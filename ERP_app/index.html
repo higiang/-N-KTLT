@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <style>
+        :root { --purple: #6c5ce7; --bg: #f8faff; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); display: flex; height: 100vh; overflow: hidden; }
+
+        /* Sidebar */
+        #sidebar { width: 260px; background: white; border-right: 1px solid #eee; display: none; flex-direction: column; }
+        .nav-item { padding: 15px 30px; cursor: pointer; color: #636e72; transition: 0.3s; font-weight: 500; }
+        .nav-item:hover { background: #f0edff; color: var(--purple); padding-left: 35px; }
+        .nav-item.active { background: var(--purple); color: white; border-radius: 0 25px 25px 0; margin-right: 15px; }
+
+        /* Top Bar */
+        .top-bar { height: 70px; background: white; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: flex-end; padding: 0 40px; gap: 15px; }
+        .avatar { width: 40px; height: 40px; background: linear-gradient(45deg, var(--purple), #a29bfe); border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+        /* Stats Cards Màu sắc */
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 25px 40px; }
+        .stat-card { padding: 25px; border-radius: 20px; color: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .c1 { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+        .c2 { background: linear-gradient(135deg, #ff7675, #fab1a0); }
+        .c3 { background: linear-gradient(135deg, #00cec9, #81ecec); }
+        .stat-card h3 { margin: 0; font-size: 14px; opacity: 0.8; }
+        .stat-card p { margin: 10px 0 0; font-size: 28px; font-weight: bold; }
+
+        /* Layout */
+        .main-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; padding: 0 40px; }
+        .box { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); height: 400px; }
+
+        /* Login */
+        #login-page { position: fixed; inset: 0; background: var(--purple); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .login-card { background: white; padding: 40px; border-radius: 25px; width: 320px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div id="login-page">
+        <div class="login-card">
+            <h1 style="color:var(--purple)">LEMONADE</h1>
+            <input type="text" id="u" placeholder="Username" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:8px;">
+            <input type="password" id="p" placeholder="Password" style="width:100%; padding:12px; margin:10px 0; border:1px solid #ddd; border-radius:8px;">
+            <button onclick="doLogin()" style="width:100%; padding:12px; background:var(--purple); color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">Đăng Nhập</button>
+        </div>
+    </div>
+
+    <div id="sidebar">
+    <div style="padding:40px 30px; font-size:24px; font-weight:bold; color:var(--purple)">LEMONADE</div>
+
+    <div id="menu" style="flex: 1;"></div>
+
+    <div style="padding: 20px; border-top: 1px solid #eee;">
+        <button onclick="location.reload()"
+                style="width: 100%; padding: 12px; background: #fff5f5; color: #ff7675; border: 1px solid #ff7675; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s;"
+                onmouseover="this.style.background='#ff7675'; this.style.color='white'"
+                onmouseout="this.style.background='#fff5f5'; this.style.color='#ff7675'">
+            Đăng xuất
+        </button>
+    </div>
+</div>
+
+    <div id="app" style="flex:1; display:none; flex-direction:column;">
+        <div class="top-bar">
+            <div style="text-align:right">
+                <div id="usr" style="font-weight:bold">User</div>
+                <div id="rl" style="font-size:12px; color:var(--purple)">Role</div>
+            </div>
+            <div class="avatar" id="avt">U</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card c1"><h3>Doanh thu thuần</h3><p id="st1">$0</p></div>
+            <div class="stat-card c2"><h3>Đơn hàng</h3><p id="st2">0</p></div>
+            <div class="stat-card c3"><h3>Tỉ lệ quay lại</h3><p id="st3">0%</p></div>
+        </div>
+
+        <div class="main-layout">
+            <div class="box"><canvas id="chart"></canvas></div>
+            <div class="box" id="calendar"></div>
+        </div>
+    </div>
+
+    <script>
+        let chart = null;
+        function doLogin() {
+            const u = document.getElementById('u').value;
+            const p = document.getElementById('p').value;
+            pywebview.api.login_request(u, p).then(res => {
+                if(res.status==='success') {
+                    document.getElementById('login-page').style.display='none';
+                    document.getElementById('sidebar').style.display='flex';
+                    document.getElementById('app').style.display='flex';
+                    document.getElementById('usr').innerText = u.toUpperCase();
+                    document.getElementById('rl').innerText = res.role==='ceo'?'CEO':'Accountant';
+                    document.getElementById('avt').innerText = u[0].toUpperCase();
+                    renderMenu(res.role);
+                    go(res.role);
+                    new FullCalendar.Calendar(document.getElementById('calendar'), {initialView: 'dayGridMonth'}).render();
+                } else alert(res.message);
+            });
+        }
+        function renderMenu(r) {
+            const items = r==='ceo'?['Dashboard','Kho','Nhân sự']:['Dashboard','Thu chi','Lịch'];
+            document.getElementById('menu').innerHTML = items.map(i=>`<div class="nav-item" onclick="go('${r}')">${i}</div>`).join('');
+        }
+        function go(r) {
+            const call = r==='ceo'?pywebview.api.get_ceo_data():pywebview.api.get_acc_data();
+            call.then(d => {
+                document.getElementById('st1').innerText = d.stats[0];
+                document.getElementById('st2').innerText = d.stats[1];
+                document.getElementById('st3').innerText = d.stats[2];
+                if(chart) chart.destroy();
+                chart = new Chart(document.getElementById('chart'), {
+                    type: r==='ceo'?'line':'pie',
+                    data: { labels: d.labels, datasets: [{data: d.values, backgroundColor: ['#6c5ce7','#ff7675','#00cec9','#fab1a0']}]}
+                });
+            });
+        }
+    </script>
+</body>
+</html>
