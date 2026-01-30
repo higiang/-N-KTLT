@@ -1,0 +1,162 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* FRAME 1440x1024 */
+.page {
+    width: 1440px;
+    height: 1024px;
+    display: flex;
+    background: #fff;
+}
+
+/* LEFT */
+.left {
+    position: relative;
+    width: 720px;
+    height: 1024px;
+    padding: 120px 100px;
+    background: #ffffff;
+}
+
+.title {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #888;
+    margin-bottom: 50px;
+    font-size: 20px;
+}
+
+.left input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+.role {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+.role-item{
+   
+    display: flex;
+    align-items:center;
+    gap:10px;
+    cursor: pointer;
+}
+.btn {
+    width: 100%;
+    padding: 18px;
+    background: #222;
+    color: white;
+    font-size: 25px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.signup {
+    position: absolute;
+    left: 160px;
+    top: 540px;
+    margin-top: 30px;
+    font-size: 21px;
+    color: #999;
+}
+
+.signup span {
+    color: #ff7a9a;
+    cursor: pointer;
+}
+
+.warning {
+    position: absolute;
+    top: 580px;
+    margin-top: 30px;
+    font-size: 18px;
+    color: #666;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.warning span {
+    color: #ff7a9a;
+    border: 1px solid #ff7a9a;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+/* RIGHT */
+.right {
+    position: relative;
+    width: 720px;
+    height: 1024px;
+    background: #f7bfc7;
+    padding: 160px 100px;
+}
+
+/* LOGO */
+.logo {
+    position: absolute;
+    width: 498px;
+    height: 60px;
+    top: 280px;
+    left: 105px;
+    z-index: 5;
+}
+.logo1 {
+    position: absolute;
+    width: 266px;
+    height: 266px;
+    top: 420px;
+    left: 65px;
+}
+.description {
+    position: absolute;   /* DÒNG QUAN TRỌNG NHẤT */
+    top: 350px;           /* Y trong Figma */
+    left: 105px;          /* X trong Figma */
+
+    font-size: 20px;
+    color: #777777;
+    line-height: 1.6;
+    max-width: 420px;
+}
+
+
+
+.right h2 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.brand {
+    font-size: 56px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.brand span {
+    color: #f
