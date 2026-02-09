@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lemonade – Sign up</title>
+
+  <!-- Poppins font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 1024px;
+      width: 1440px;
+      margin: 0 auto;
+      background: #ffffff;
+    }
+
+    .container {
+      display: flex;
+      height: 1024px;
+      width: 1440px;
+    }
+
+    /* LEFT */
+    .left {
+      width: 720px;
+      padding: 96px 96px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left h1 {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #000;
+    }
+
+    .left p.subtitle {
+      font-size: 16px;
+      color: #9b9b9b;
+      margin-bottom: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: 1px solid #dcdcdc;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-group input::placeholder {
+      color: #9b9b9b;
+    }
+
+    .btn {
+      margin-top: 16px;
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      background: #1f1f1f;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .note {
+      margin-top: 24px;
+      font-size: 12px;
+      color: #b5b5b5;
+    }
+
+    /* RIGHT */
+    .right {
+    position: relative;
+    width: 720px;
+    height: 1024px;
+    background: #f7bfc7;
+    padding: 160px 100px;
+}
+
+/* LOGO */
+.logo {
+    position: absolute;
+    width: 498px;
+    height: 60px;
+    top: 280px;
+    left: 105px;
+    z-index: 5;
+}
+.logo1 {
+    position: absolute;
+    width: 266px;
+    height: 266px;
+    top: 420px;
+    left: 65px;
+}
+.description {
+    position: absolute;   /* DÒNG QUAN TRỌNG NHẤT */
+    top: 350px;           /* Y trong Figma */
+    left: 105px;          /* X trong Figma */
+
+    font-size: 20px;
+    color: #777777;
+    line-height: 1.6;
+    max-width: 420px;
+}
+
+
+
+.right h2 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.brand {
+    font-size: 56px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.brand span {
+    color: #f
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- LEFT -->
+    <div class="left">
+      <h1>Sign up</h1>
+      <p class="subtitle">Create your Lemonade account</p>
+
+      <div class="form-group">
+        <input type="email" placeholder="Email" />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Confirm password" />
+      </div>
+
+      <button class="btn">Create account</button>
+      <p class="note">Administrator accounts are managed internally</p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+        <h2>Welcome to</h2>
+        <p class="description">
+            Vietnamese beauty brand for confidence,<br>
+            creativity & self-expression.
+        </p>
+        <img src="images/lemonade1.png" alt="Lemonade Logo" class="logo">
+        <img src="images/logo_dacat.png" alt="Lemonade Logo" class="logo1">
+
+        <div class="circle main"></div>
+        <div class="circle sub"></div>
+    </div>
+  </div>
+</body>
+</html>
