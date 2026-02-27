@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lemonade - CEO Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ceo.css/ceo_dashboard.css') }}" />
+</head>
+<body>
+    <div class="CEO_mainscreen">
+        <aside class="menu_sidebar">
+            <div class="logo_top">
+                <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="sidebar_lemon">
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand_name">
+            </div>
+
+            <nav class="sidemenu">
+                <div class="nav_item active">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_dashboard.svg') }}">
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav_item">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_reports.svg') }}">
+                    <span>Reports</span>
+                </div>
+                <div class="nav_item">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_inventory.svg') }}">
+                    <span>Inventory</span>
+                </div>
+                <div class="nav_item">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_sales_report.svg') }}">
+                    <span>Sales Report</span>
+                </div>
+                <div class="nav_item">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_marketing.svg') }}">
+                    <span>Marketing</span>
+                </div>
+                <div class="nav_item">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_accounting&finance.svg') }}">
+                    <span>Finance</span>
+                </div>
+            </nav>
+
+            <div class="sidemenu_bottom">
+                <div class="nav_item">
+                    <img src="{{ url_for('static', filename='img/ic_search.svg') }}">
+                    <span>Settings</span>
+                </div>
+                <div class="nav_item">
+                    <img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}">
+                    <span>Sign Out</span>
+                </div>
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand_footer">
+            </div>
+        </aside>
+
+        <main class="main_content">
+            <header class="header">
+                <h1 class="header_title">Chief Executive Officer</h1>
+
+                <div class="header_right_group">
+                    <div class="search_box">
+                        <img src="{{ url_for('static', filename='img/ic_search.svg') }}">
+                        <input type="text" placeholder="Search here...">
+                    </div>
+                    <div class="user_info">
+                        <span class="email_text"><strong>email: sales_lemon.cos@bus.vn</strong></span>
+                        <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="avatar">
+                    </div>
+                </div>
+            </header>
+
+            <div class="stats_grid">
+                <div class="card pink">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_ceo_pink.svg') }}" class="card_icon">
+                    <div class="card_val">$1k</div>
+                    <div class="card_label">Profit</div>
+                    <div class="card_trend">+8% from yesterday</div>
+                </div>
+                <div class="card orange">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_ceo_orange.svg') }}" class="card_icon">
+                    <div class="card_val">300</div>
+                    <div class="card_label">Total Cost</div>
+                    <div class="card_trend">+5% from yesterday</div>
+                </div>
+                <div class="card green">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_ceo_green.svg') }}" class="card_icon">
+                    <div class="card_val">5</div>
+                    <div class="card_label">Product Sold</div>
+                    <div class="card_trend">+1.2% from yesterday</div>
+                </div>
+                <div class="card purple">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_ceo_purple.svg') }}" class="card_icon">
+                    <div class="card_val">8</div>
+                    <div class="card_label">Total Revenue</div>
+                    <div class="card_trend">0.5% from yesterday</div>
+                </div>
+            </div>
+
+            <div class="empty_layout">
+                <div class="placeholder chart"></div>
+                <div class="placeholder calendar"></div>
+                <div class="placeholder chart"></div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

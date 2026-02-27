@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lemonade - Supplier List</title>
+    <style>
+        :root {
+            --bg: #F9FAFB;
+            --sidebar: #EDF2F9;
+            --primary: #5D5FEF;
+            --dark-blue: #151D48;
+        }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); overflow: hidden; }
+        .container { display: flex; height: 100vh; }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 300px;
+            background: var(--sidebar);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            border-right: 1px solid #E5E7EB;
+        }
+
+        .logo-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 50px;
+            padding-left: 10px;
+        }
+
+        .nav-menu { flex-grow: 1; }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 16px 20px;
+            color: #737791;
+            border-radius: 16px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        /* ICON SIDEBAR TO RÕ (32px) */
+        .nav-item img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(93, 95, 239, 0.2);
+        }
+        .nav-item.active img { filter: brightness(0) invert(1); }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        /* ẢNH LOGO LEMONADE Ở CUỐI SIDEBAR */
+        .brand-footer-img {
+            display: block;
+            margin: 25px auto 10px auto;
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main { flex-grow: 1; padding: 40px 50px; box-sizing: border-box; display: flex; flex-direction: column; overflow-y: auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+
+        /* Search bar chung ở Header */
+        .search-bar { background: #F4F7FE; border-radius: 15px; padding: 12px 25px; display: flex; align-items: center; width: 450px; }
+        .search-bar input { border: none; background: transparent; outline: none; width: 100%; margin-left: 15px; font-size: 15px; }
+
+        .admin-info { display: flex; align-items: center; gap: 20px; }
+
+        .email-text {
+            font-size: 13px;
+            color: var(--dark-blue);
+            font-weight: 800 !important;
+        }
+
+        /* Table Section */
+        .table-card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 4px 25px rgba(0,0,0,0.04); flex-grow: 1; display: flex; flex-direction: column; }
+        .table-title { font-size: 32px; font-weight: 700; color: var(--dark-blue); margin-bottom: 25px; }
+
+        /* THANH TÌM KIẾM RIÊNG TRONG KHUNG TRẮNG */
+        .internal-search {
+            background: #F4F7FE;
+            border-radius: 15px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 25px;
+        }
+        .internal-search input { border: none; background: transparent; outline: none; width: 100%; margin-left: 12px; font-size: 14px; }
+
+        .table-header { display: flex; font-weight: 600; color: #96A0AF; border-bottom: 1px solid #F3F4F6; padding-bottom: 20px; }
+        .table-row { display: flex; padding: 22px 0; border-bottom: 1px solid #F9FAFB; align-items: center; color: var(--dark-blue); font-size: 15px; }
+        .col1 { width: 35%; font-weight: 600; } .col2 { width: 20%; } .col3 { width: 20%; } .col4 { width: 25%; }
+
+        /* Footer */
+        .footer-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-bottom: 20px; }
+        .btn-back {
+            display: flex; align-items: center; gap: 10px; background: white; border: 1.5px solid #E2E8F0;
+            padding: 12px 25px; border-radius: 14px; cursor: pointer; font-weight: 600; color: #737791;
+            transition: 0.3s;
+        }
+        .btn-back:hover { background: #F8F9FA; border-color: #CBD5E1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-top">
+                <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" width="40">
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" width="150">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-item">
+                    <img src="{{ url_for('static', filename='img/inventory/ic_dashboard.svg') }}">
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item">
+                    <img src="{{ url_for('static', filename='img/inventory/ic_product_list.svg') }}">
+                    <span>Product List</span>
+                </div>
+                <div class="nav-item active">
+                    <img src="{{ url_for('static', filename='img/inventory/ic_supplier.svg') }}">
+                    <span>Supplier</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="nav-item">
+                    <img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}">
+                    <span>Sign Out</span>
+                </div>
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand-footer-img">
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="header">
+                <h2 style="color: var(--dark-blue); margin: 0; font-size: 26px; font-weight: 800;">Inventory Manager</h2>
+
+                <div class="search-bar">
+                    <img src="{{ url_for('static', filename='img/ic_search.svg') }}" width="22">
+                    <input type="text" placeholder="Search here...">
+                </div>
+
+                <div class="admin-info">
+                    <span class="email-text">email: inv_lemon.cos@bus.vn</span>
+                    <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" width="45">
+                </div>
+            </header>
+
+            <div class="table-card">
+                <h1 class="table-title">Supplier List</h1>
+
+                <div class="internal-search">
+                    <img src="{{ url_for('static', filename='img/ic_search.svg') }}" width="18">
+                    <input type="text" placeholder="Search here...">
+                </div>
+
+                <div class="table-header">
+                    <div class="col1">Company Name</div>
+                    <div class="col2">Phone</div>
+                    <div class="col3">Category</div>
+                    <div class="col4">Location</div>
+                </div>
+
+                <div class="table-row">
+                    <div class="col1">Bình Minh Group</div>
+                    <div class="col2">0909.123.456</div>
+                    <div class="col3">Tem, nhãn dán</div>
+                    <div class="col4">TP. Hồ Chí Minh</div>
+                </div>
+                <div class="table-row">
+                    <div class="col1">Đại Lý Tuấn Tài</div>
+                    <div class="col2">0918.555.666</div>
+                    <div class="col3">Hộp</div>
+                    <div class="col4">Bình Dương</div>
+                </div>
+                <div class="table-row">
+                    <div class="col1">Cty Bao Bì Tân Tiến</div>
+                    <div class="col2">0933.777.888</div>
+                    <div class="col3">Bao bì</div>
+                    <div class="col4">Đồng Nai</div>
+                </div>
+            </div>
+
+            <div class="footer-controls">
+                <div style="color: #96A0AF; font-weight: 500; font-size: 14px;"> < Prev &nbsp; 1 &nbsp; 2 &nbsp; 3 &nbsp; Next > </div>
+                <button class="btn-back" onclick="window.history.back()">
+                    <img src="{{ url_for('static', filename='img/ic_back.svg') }}" width="18">
+                    <span>Back</span>
+                </button>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

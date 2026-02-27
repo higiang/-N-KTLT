@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Inventory Manager - Lemonade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='inv.css/inv_dashboard.css') }}" />
+</head>
+<body>
+    <div class="inv-app-container">
+        <aside class="menu-sidebar">
+            <div class="brand-top">
+                <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="brand-img">
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand-logo">
+            </div>
+
+            <nav class="sidemenu">
+                <a href="/inventory" class="btn-item active">
+                    <img src="{{ url_for('static', filename='img/inventory/ic_dashboard.svg') }}" class="nav-ic">
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="btn-item">
+                    <img src="{{ url_for('static', filename='img/inventory/ic_product_list.svg') }}" class="nav-ic">
+                    <span>Product List</span>
+                </a>
+                <a href="#" class="btn-item">
+                    <img src="{{ url_for('static', filename='img/inventory/ic_supplier.svg') }}" class="nav-ic">
+                    <span>Supplier</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="/login" class="btn-logout">
+                    <img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}" class="nav-ic">
+                    <span>Sign Out</span>
+                </a>
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="logo-small">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header-main">
+                <h1 class="title">Inventory Manager</h1>
+                <div class="header-right">
+                    <div class="search-wrap">
+                        <img src="{{ url_for('static', filename='img/ic_search.svg') }}" width="18">
+                        <span>Search here...</span>
+                    </div>
+                    <div class="user-box">
+                        <span class="email-bold">inv_lemon.cos@bus.vn</span>
+                        <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="user-avatar">
+                    </div>
+                </div>
+            </header>
+
+            <div class="overview-section">
+                <div class="overview-header">
+                    <h2>Inventory Overview</h2>
+                    <p>Daily Updates</p>
+                    <button class="btn-export-top">
+                        <img src="{{ url_for('static', filename='img/ic_export.svg') }}"> Export
+                    </button>
+                </div>
+                <div class="cards-grid">
+                    <div class="inv-card red">
+                        <div class="icon-box"><img src="{{ url_for('static', filename='img/inventory/ic_inv4.svg') }}"></div>
+                        <h3>5.000</h3>
+                        <p class="card-label">Total Items</p>
+                        <p class="card-sub">+ 120 News Items</p>
+                    </div>
+                    <div class="inv-card orange">
+                        <div class="icon-box"><img src="{{ url_for('static', filename='img/inventory/ic_inv3.svg') }}"></div>
+                        <h3>25</h3>
+                        <p class="card-label">Low Stock</p>
+                        <p class="card-sub">+ Urgent Restock</p>
+                    </div>
+                    <div class="inv-card green">
+                        <div class="icon-box"><img src="{{ url_for('static', filename='img/inventory/ic_inv2.svg') }}"></div>
+                        <h3>5</h3>
+                        <p class="card-label">Expiring</p>
+                        <p class="card-sub">+ Check Daily</p>
+                    </div>
+                    <div class="inv-card purple">
+                        <div class="icon-box"><img src="{{ url_for('static', filename='img/inventory/ic_inv1.svg') }}"></div>
+                        <h3>8</h3>
+                        <p class="card-label">Suppliers</p>
+                        <p class="card-sub">Active Partners</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <div class="table-header">
+                    <h2 class="alert-title">Low Stock Alert</h2>
+                    <button class="btn-export-small">
+                        <img src="{{ url_for('static', filename='img/ic_export.svg') }}"> Export
+                    </button>
+                </div>
+                <div class="custom-table">
+                    <div class="thead">
+                        <div class="th">Product</div>
+                        <div class="th border-left">Stock</div>
+                        <div class="th border-left">Status</div>
+                    </div>
+                    <div class="tbody">
+                        <div class="empty-row">No low stock items currently</div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/finance-report" class="btn-back-app">
+                <img src="{{ url_for('static', filename='img/ic_back.svg') }}"> Back
+            </a>
+        </main>
+    </div>
+</body>
+</html>
