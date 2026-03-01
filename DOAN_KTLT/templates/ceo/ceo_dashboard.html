@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lemonade - CEO Dashboard</title>
+    <link rel="stylesheet" href="../../static/ceo/ceo_dashboard.css" />
+</head>
+<body>
+    <div class="CEO_mainscreen">
+        <aside class="menu_sidebar">
+            <div class="logo_top">
+                <img src="../../static/img/img_lemonade.png" alt="Logo" class="sidebar_lemon">
+                <img src="../../static/img/lemonade_logo.png" alt="Brand" class="brand_name_img">
+            </div>
+
+            <nav class="sidemenu">
+                <div class="nav_item active">
+                    <img src="../../static/img/ceo/ic_dashboard.svg">
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav_item">
+                    <img src="../../static/img/ceo/ic_reports.svg">
+                    <span>Reports</span>
+                </div>
+                <div class="nav_item">
+                    <img src="../../static/img/ceo/ic_inventory.svg">
+                    <span>Inventory</span>
+                </div>
+                <div class="nav_item">
+                    <img src="../../static/img/ceo/ic_sales_report.svg">
+                    <span>Sales Report</span>
+                </div>
+                <div class="nav_item">
+                    <img src="../../static/img/ceo/ic_marketing.svg">
+                    <span>Marketing</span>
+                </div>
+                <div class="nav_item">
+                    <img src="../../static/img/ceo/ic_accounting&finance.svg">
+                    <span>Finance</span>
+                </div>
+            </nav>
+
+            <div class="sidemenu_bottom">
+                <div class="nav_item">
+                    <img src="../../static/img/ic_settings.svg">
+                    <span>Settings</span>
+                </div>
+                <div class="nav_item">
+                    <img src="../../static/img/ic_sign_out.svg">
+                    <span>Sign Out</span>
+                </div>
+                <img src="../../static/img/lemonade_logo.png" class="footer-brand">
+            </div>
+        </aside>
+
+        <main class="main_content">
+            <header class="header">
+                <h1 class="header_title">Chief Executive Officer</h1>
+                <div class="header_right_group">
+                    <div class="search_box">
+                        <img src="../../static/img/ic_search.svg">
+                        <input type="text" placeholder="Search here...">
+                    </div>
+                    <div class="user_profile">
+                        <span class="email_text"><strong>email: ceo_lemon.cos@bus.vn</strong></span>
+                        <img src="../../static/img/img_lemonade.png" class="user-logo">
+                    </div>
+                </div>
+            </header>
+
+            <section class="today-sales">
+                <div class="section-header">
+                    <div class="title-text">
+                        <h2>Today’s Sales</h2>
+                        <p>Sales Summary</p>
+                    </div>
+                    <button class="export-btn">
+                        <img src="../../static/img/ic_export.svg">
+                        <span>Export</span>
+                    </button>
+                </div>
+
+                <div class="stats_grid">
+                    <div class="card pink">
+                        <div class="icon-circle"><img src="../../static/img/ic_dashboard_pink.svg" class="fit-icon"></div>
+                        <div class="card_val">$1k</div>
+                        <div class="card_label">Profit</div>
+                        <div class="card_trend">+8% from yesterday</div>
+                    </div>
+                    <div class="card orange">
+                        <div class="icon-circle"><img src="../../static/img/ic_dashboard_orange.svg" class="fit-icon"></div>
+                        <div class="card_val">300</div>
+                        <div class="card_label">Total Cost</div>
+                        <div class="card_trend">+5% from yesterday</div>
+                    </div>
+                    <div class="card green">
+                        <div class="icon-circle"><img src="../../static/img/ic_dashboard_green.svg" class="fit-icon"></div>
+                        <div class="card_val">5</div>
+                        <div class="card_label">Product Sold</div>
+                        <div class="card_trend">+1.2% from yesterday</div>
+                    </div>
+                    <div class="card purple">
+                        <div class="icon-circle"><img src="../../static/img/ic_dashboard_purple.svg" class="fit-icon"></div>
+                        <div class="card_val">8</div>
+                        <div class="card_label">Total Revenue</div>
+                        <div class="card_trend">0.5% from yesterday</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chart-calendar-grid">
+                <div class="placeholder-box">
+                    <h3>Total Revenue</h3>
+                    <div class="chart-area"></div>
+                </div>
+                <div class="placeholder-box">
+                    <h3>March 2021</h3>
+                    <div class="calendar-area"></div>
+                </div>
+                <div class="placeholder-box">
+                    <h3>Total Cost</h3>
+                    <div class="chart-area"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

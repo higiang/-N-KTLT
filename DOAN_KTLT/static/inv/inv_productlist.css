@@ -1,0 +1,208 @@
+/* --- 1. BIẾN ROOT & STYLEGUIDE --- */
+:root {
+    --side-menu-bg: #F0F7FF;
+    --primary-blue: #5D5FEF;
+    --text-grey: #737791;
+    --dark-blue: #151D48;
+    --white: #FFFFFF;
+    --bg-light: #F9FAFB;
+}
+
+/* --- 2. RESET & GLOBAL --- */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* Giữ sidebar cố định, chỉ cuộn nội dung */
+    background-color: var(--bg-light);
+    font-family: 'Inter', 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- 3. SIDEBAR STYLES --- */
+.menu-sidebar {
+    width: 280px;
+    background-color: var(--side-menu-bg);
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #E5E7EB;
+    flex-shrink: 0;
+}
+
+.logo-section {
+    padding: 40px 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Quả chanh Sidebar */
+.sidebar-lemon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.nav-group {
+    flex: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 30px;
+    color: var(--text-grey);
+    font-weight: 500;
+    margin: 4px 15px;
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.nav-item img {
+    margin-right: 15px;
+    width: 22px;
+    opacity: 0.7;
+}
+
+.nav-item.active {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    box-shadow: 0 10px 20px rgba(93, 95, 239, 0.2);
+}
+
+.nav-item.active img {
+    filter: brightness(0) invert(1);
+    opacity: 1;
+}
+
+.sidebar-footer {
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.brand-footer-text {
+    padding: 10px 30px 30px 30px;
+    color: #005691;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+/* --- 4. MAIN CONTENT AREA --- */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* --- 5. HEADER STYLES --- */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-shrink: 0;
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-bar {
+    background: #F4F7FF;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px 12px 45px;
+    width: 300px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    opacity: 0.5;
+}
+
+/* Quả chanh Header */
+.header-lemon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* --- 6. CARDS & TABLES --- */
+.card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    text-align: left;
+    color: #96A0AF;
+    padding: 15px;
+    border-bottom: 1px solid #F3F4F6;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.data-table td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #F9FAFB;
+    font-weight: 500;
+    color: #050B20;
+    font-size: 15px;
+}
+
+/* --- 7. BACK BUTTON (FIXED) --- */
+.fixed-back-container {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.2s ease;
+}
+
+.fixed-back-container:hover {
+    transform: translateX(-5px);
+}
+
+.back-circle {
+    width: 30px;
+    height: 30px;
+    border: 1.5px solid var(--text-grey);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Nền mờ giúp nút nổi bật hơn */
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemonade - Market Share Analysis</title>
+    <link rel="stylesheet" href="../../static/mar/mar_market_share_analysis.css" />
+</head>
+<body>
+    <div class="mkt-container">
+        <aside class="mkt-sidebar">
+            <div class="brand-box">
+                <img src="../../static/img/img_lemonade.png" class="logo-img">
+                <img src="../../static/img/lemonade_logo.png" class="brand-img">
+            </div>
+            <nav class="mkt-nav">
+                <div class="mkt-nav-item"><img src="../../static/img/mar/ic_dashboard.svg"><span>Dashboard</span></div>
+                <div class="mkt-nav-item"><img src="../../static/img/mar/ic_seg_perform.svg"><span>Segment Performance</span></div>
+                <div class="mkt-nav-item"><img src="../../static/img/mar/ic_cam_perform.svg"><span>Campaign Performance</span></div>
+                <div class="mkt-nav-item active"><img src="../../static/img/mar/ic_market_share_analysis.svg"><span>Market Share Analysis</span></div>
+                <div class="mkt-nav-item"><img src="../../static/img/mar/ic_upload_file.svg"><span>Upload Data</span></div>
+            </nav>
+            <div class="mkt-sidebar-bottom">
+                <div class="mkt-nav-item"><img src="../../static/img/ic_sign_out.svg"><span>Sign Out</span></div>
+                <img src="../../static/img/lemonade_logo.png" class="footer-img">
+            </div>
+        </aside>
+
+        <main class="mkt-main">
+            <header class="mkt-header">
+                <h1 class="mkt-title">Marketing department</h1>
+                <div class="mkt-header-right">
+                    <div class="mkt-search">
+                        <img src="../../static/img/ic_search.svg">
+                        <input type="text" placeholder="Search here...">
+                    </div>
+                    <div class="mkt-profile">
+                        <span class="mkt-email-bold">email: mkt_lemon.cos@bus.vn</span>
+                        <img src="../../static/img/img_lemonade.png" class="mkt-avatar">
+                    </div>
+                </div>
+            </header>
+
+            <div class="mkt-content">
+                <div class="mkt-section-top">
+                    <div class="title-group">
+                        <h2>Market Share Report</h2>
+                        <p>Product contribution in total market</p>
+                    </div>
+                    <button class="mkt-export-btn">
+                        <img src="../../static/img/ic_export.svg"><span>Export</span>
+                    </button>
+                </div>
+
+                <div class="mkt-kpi-grid">
+                    <div class="mkt-card orange">
+                        <div class="mkt-icon-circle"><img src="../../static/img/ic_dashboard_orange.svg"></div>
+                        <div class="mkt-card-data">
+                            <span class="mkt-val">+35,2%</span>
+                            <span class="mkt-label">Top Product</span>
+                        </div>
+                    </div>
+                    <div class="mkt-card green">
+                        <div class="mkt-icon-circle"><img src="../../static/img/ic_dashboard_green.svg"></div>
+                        <div class="mkt-card-data">
+                            <span class="mkt-val">+5,2%</span>
+                            <span class="mkt-label">Share Trend</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mkt-chart-card">
+                    <h3>Analytics</h3>
+                    <div class="mkt-chart-placeholder">
+                        <span>Biểu đồ sẽ hiển thị ở đây...</span>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="mkt-footer">
+                <button class="mkt-back-btn" onclick="window.history.back()">
+                    <img src="../../static/img/ic_back.svg"><span>Back</span>
+                </button>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

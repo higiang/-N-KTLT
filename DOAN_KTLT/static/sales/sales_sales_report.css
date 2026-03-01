@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* RESET & GLOBAL */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif !important; -webkit-font-smoothing: antialiased; }
+body { height: 100vh; overflow: hidden; background: #FAFBFC; }
+.sales-report-chosen { display: flex; width: 100vw; height: 100vh; }
+
+/* SIDEBAR */
+.menu-sidebar { width: 300px; background: #EDF2F9; display: flex; flex-direction: column; padding: 25px; border-right: 1px solid #E5E7EB; flex-shrink: 0; }
+
+.logo-group { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
+
+/* Fix quả chanh trên sidemenu */
+.sidemenu-lemon-icon {
+    width: 35px; height: 35px;
+    background: url('../../static/img/img_lemonade.png') no-repeat center;
+    background-size: contain;
+}
+
+.sidemenu { flex: 1; }
+.nav_item { display: flex; align-items: center; gap: 15px; padding: 12px 15px; color: #737791; border-radius: 12px; cursor: pointer; font-size: 14px; margin-bottom: 8px; }
+.nav_item.active { background: #5D5FEF; color: white; box-shadow: 0 10px 20px rgba(93, 95, 239, 0.2); }
+.nav_item.active img { filter: brightness(0) invert(1); }
+
+/* Fix khoảng cách chữ Lemonade đáy sidemenu */
+.sidemenu_bottom { margin-top: auto; padding-bottom: 20px; }
+.bottom-brand-wrapper { padding-top: 25px; }
+.lemonade-logo-bottom { width: 145px; height: auto; opacity: 0.9; }
+
+/* HEADER */
+.main_content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.header_fixed { height: 85px; background: #FFF; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; border-bottom: 1px solid #F1F1F1; flex-shrink: 0; }
+.text-wrapper-2 { font-size: 26px; font-weight: 700; color: #151D48; }
+
+.search_center { flex: 1; display: flex; justify-content: center; }
+.search_box { background: #F4F7FE; border-radius: 16px; padding: 10px 18px; display: flex; align-items: center; gap: 12px; width: 350px; border: 1px solid #EFEFEF; }
+.search_box input { border: none; background: transparent; outline: none; width: 100%; font-size: 14px; }
+
+.profile_right { display: flex; align-items: center; gap: 15px; min-width: 250px; justify-content: flex-end; }
+.email_bold strong { font-weight: 800 !important; color: #151D48; font-size: 13px; }
+
+/* Quả chanh sau email */
+.header-lemon-avatar {
+    width: 32px; height: 32px;
+    background: url('../../static/img/img_lemonade.png') no-repeat center;
+    background-size: contain;
+    border-radius: 50%;
+}
+
+/* KPI & GRID */
+.scrollable_content { flex: 1; padding: 25px 40px; overflow-y: auto; }
+.filter_row { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 20px; }
+.pill { padding: 6px 18px; border: 1px solid #737791; border-radius: 50px; font-size: 13px; font-weight: 600; color: #151D48; cursor: pointer; }
+
+.kpi_navbar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; }
+.kpi_item { padding: 20px; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; height: 110px; }
+.pink { background: #FFE2E5; } .green { background: #DCFCE7; } .yellow { background: #FFF4DE; } .purple { background: #F3E8FF; }
+.k_label { font-size: 14px; font-weight: 500; color: #425166; margin-bottom: 5px; }
+.k_val { font-size: 26px; font-weight: 800 !important; color: #151D48; }
+
+.dashboard_grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; padding-bottom: 40px; }
+.chart_box { background: #FFF; border-radius: 24px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); min-height: 350px; }
+.box_title { font-size: 18px; font-weight: 700; color: #151D48; margin-bottom: 20px; }
+.chart_placeholder_dashed { height: 220px; border: 2px dashed #CBD5E1; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #94A3B8; font-style: italic; }
+
+.stat_row, .slow_row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #F8FAFC; font-size: 14px; }
+.tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.low { background: #FFADAD; } .stable { background: #BBEDA4; }
+
+/* FOOTER */
+.footer_fixed { height: 70px; border-top: 1px solid #F1F1F1; padding: 0 40px; display: flex; justify-content: flex-end; align-items: center; flex-shrink: 0; }
+.sal-back-btn { display: flex; align-items: center; gap: 8px; border: none; background: transparent; color: #737791; font-weight: 600; cursor: pointer; }

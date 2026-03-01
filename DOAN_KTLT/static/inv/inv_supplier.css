@@ -1,0 +1,54 @@
+:root {
+    --bg: #F9FAFB;
+    --sidebar: #EDF2F9;
+    --primary: #5D5FEF;
+}
+
+body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); }
+.inv-supplier-chosen { display: flex; height: 100vh; overflow: hidden; }
+
+/* Sidebar */
+.menu-sidebar {
+    width: 280px; background: var(--sidebar);
+    display: flex; flex-direction: column; padding: 40px 20px;
+}
+.logo-top { display: flex; align-items: center; gap: 10px; margin-bottom: 60px; }
+.lemon-icon { width: 35px; }
+.brand-text { width: 140px; }
+
+.sidemenu { flex-grow: 1; }
+.nav-item {
+    display: flex; align-items: center; gap: 15px; padding: 12px 20px;
+    color: #737791; border-radius: 12px; cursor: pointer; margin-bottom: 8px;
+}
+.nav-item.active { background: var(--primary); color: white; }
+.nav-item img { width: 22px; }
+
+.sidebar-footer { border-top: 1px solid #D1D5DB; padding-top: 20px; }
+.brand-name-bottom {
+    margin-top: 20px; font-weight: 800; color: #151D48;
+    letter-spacing: 2px; text-align: center; font-size: 20px;
+}
+
+/* Header & Table Content */
+.main-area { flex-grow: 1; padding: 30px 50px; }
+.top-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
+.search-bar {
+    background: #F4F7FE; border-radius: 15px; padding: 10px 20px;
+    display: flex; align-items: center; gap: 12px; width: 400px;
+}
+.search-bar input { border: none; background: transparent; outline: none; width: 100%; }
+.admin-info { display: flex; align-items: center; gap: 15px; }
+.email-display { font-size: 13px; color: #151D48; }
+.lemon-decor { width: 35px; }
+
+.table-card { background: white; border-radius: 16px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+.table-header { display: flex; font-weight: 600; color: #737791; border-bottom: 1px solid #EEE; padding-bottom: 15px; }
+.table-row { display: flex; padding: 20px 0; border-bottom: 1px solid #F5F5F5; }
+
+/* Back Button & Pagination */
+.table-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; }
+.btn-back {
+    display: flex; align-items: center; gap: 10px; background: white;
+    border: 1px solid #E2E8F0; padding: 10px 25px; border-radius: 12px; cursor: pointer;
+}

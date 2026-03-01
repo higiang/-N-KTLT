@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Poppins', sans-serif; background-color: #FAFBFC; height: 100vh; overflow: hidden; }
+
+.mkt-campaign { display: flex; height: 100vh; width: 100vw; }
+
+/* Sidebar */
+.sidebar { width: 260px; background: #FFF; padding: 25px; display: flex; flex-direction: column; border-right: 1px solid #F0F0F0; flex-shrink: 0; }
+.logo-container { display: flex; align-items: center; gap: 8px; margin-bottom: 40px; }
+.main-logo { height: 32px; width: auto; }
+.brand-name-img { height: 18px; width: auto; }
+
+.nav-menu { flex: 1; }
+.nav-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 12px; color: #737791; cursor: pointer; margin-bottom: 5px; font-size: 14px; }
+.nav-item img { width: 20px; height: 20px; object-fit: contain; }
+.nav-item.active { background: #5D5FEF; color: #FFF; box-shadow: 0 8px 15px rgba(93, 95, 239, 0.2); }
+.nav-item.active img { filter: brightness(0) invert(1); }
+
+.sidebar-footer { margin-top: auto; padding-top: 20px; text-align: center; }
+.footer-brand { width: 80%; height: auto; opacity: 0.9; margin-top: 15px; }
+
+/* --- MAIN CONTENT AREA --- */
+.content-area { flex: 1; display: flex; flex-direction: column; height: 100vh; position: relative; }
+
+/* FIX: DẢI TRẮNG HEADER */
+.top-header-white {
+    background: #FFFFFF;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #F1F1F1;
+    z-index: 100;
+}
+.department-title { font-size: 24px; font-weight: 700; color: #151D48; }
+
+.header-right { display: flex; align-items: center; gap: 25px; }
+.search-bar { background: #F9FAFB; padding: 8px 15px; border-radius: 12px; display: flex; align-items: center; gap: 10px; border: 1px solid #F0F0F0; }
+.search-bar input { border: none; background: transparent; outline: none; width: 180px; font-size: 13px; }
+
+.user-profile-inline { display: flex; align-items: center; gap: 8px; }
+.user-logo-small { height: 24px; width: auto; }
+.bold-email { font-weight: 800 !important; color: #151D48; font-size: 13px; }
+
+/* Scrollable Content */
+.scrollable-content { flex: 1; padding: 30px 40px; overflow-y: auto; padding-bottom: 100px; }
+
+/* Section Header & Export Button */
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.sub-title { font-size: 20px; font-weight: 700; color: #151D48; }
+.desc-text { font-size: 13px; color: #737791; }
+
+.export-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border: 1px solid #E2E8F0;
+    border-radius: 10px; background: #FFF; cursor: pointer;
+    font-size: 13px; font-weight: 600; color: #151D48;
+}
+.export-btn img { width: 14px; }
+
+/* KPI Grid - 3 khung thu nhỏ */
+.kpi-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.kpi-card { padding: 22px; border-radius: 20px; height: 150px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+.kpi-card:hover { transform: translateY(-5px); }
+
+.icon-circle { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.fit-icon { width: 22px !important; height: 22px !important; object-fit: contain !important; }
+
+.pink { background: #FFE2E5; } .pink .icon-circle { background: #FA5A7D; }
+.yellow { background: #FFF4DE; } .yellow .icon-circle { background: #FF947A; }
+.green { background: #DCFCE7; } .green .icon-circle { background: #3CD856; }
+
+.val { font-size: 24px; font-weight: 700; color: #151D48; }
+.label { font-size: 15px; color: #425166; font-weight: 600; }
+
+/* Chart Area */
+.chart-card { background: #FFF; border-radius: 24px; padding: 30px; margin-top: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+.chart-title { font-size: 18px; font-weight: 700; color: #151D48; margin-bottom: 20px; }
+.chart-canvas { min-height: 250px; display: flex; align-items: center; justify-content: center; border: 1.5px dashed #F0F0F0; border-radius: 16px; }
+
+/* Fixed Footer */
+.fixed-footer {
+    position: absolute; bottom: 0; right: 0;
+    width: calc(100% - 260px);
+    padding: 15px 40px; display: flex; justify-content: flex-end;
+    background: #FAFBFC; border-top: 1px solid #F0F0F0;
+}
+.back-btn { display: flex; align-items: center; gap: 8px; background: transparent; border: none; color: #737791; cursor: pointer; font-weight: 600; }
+.back-btn img { width: 18px; }

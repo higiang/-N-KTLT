@@ -17,7 +17,7 @@ def get_free_port():
 
 @app.route('/')
 def reports():
-    return render_template('ceo.html/ceo_reports.html')
+    return render_template('sales/sales_dashboard.html')
 
 
 def run_flask(port):
@@ -36,14 +36,14 @@ if __name__ == '__main__':
     # - width/height: Kích thước khởi tạo
     # - min_size: Không cho phép thu nhỏ quá mức làm hỏng layout
     # - resizable: Cho phép người dùng kéo giãn cửa sổ
+
     window = webview.create_window(
-        'Lemonade CEO Reports',
+        'Lemonade Management System',
         f'http://127.0.0.1:{port}',
-        width=1280,
-        height=800,
-        min_size=(1024, 768),
+        width=650,  # Chiều rộng vừa phải cho một Desktop form
+        height=800,  # Chiều cao vừa đủ để hiện hết form
         resizable=True,
-        confirm_close=True
+        min_size=(600, 700)  # Giới hạn không cho bóp quá nhỏ gây vỡ form
     )
 
     webview.start()
