@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lemonade Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='acc/acc_total_revenue.css') }}">
+</head>
+<body>
+    <div class="acc-total-revenue">
+        <aside class="menu-sidebar">
+            <div class="brand-section">
+                <img class="brand-icon" src="{{ url_for('static', filename='img/img_lemonade.png') }}">
+                <img class="brand-text" src="{{ url_for('static', filename='img/lemonade_logo.png') }}">
+            </div>
+
+            <div class="sidemenu">
+                <a href="#" class="btn-item">
+                    <img class="nav-icon" src="{{ url_for('static', filename='img/accountant/ic_dashboard.svg') }}"> Dashboard
+                </a>
+                <a href="#" class="btn-item">
+                    <img class="nav-icon" src="{{ url_for('static', filename='img/accountant/ic_total_cost.svg') }}"> Total Cost
+                </a>
+                <a href="#" class="btn-item active">
+                    <img class="nav-icon" src="{{ url_for('static', filename='img/accountant/ic_total_revenue.svg') }}"> Total Revenue
+                </a>
+                <a href="#" class="btn-item">
+                    <img class="nav-icon" src="{{ url_for('static', filename='img/accountant/ic_finance_report.svg') }}"> Finance Report
+                </a>
+                <a href="#" class="btn-item">
+                    <img class="nav-icon" src="{{ url_for('static', filename='img/accountant/ic_documents.svg') }}"> Documents
+                </a>
+            </div>
+
+            <div style="margin-top: auto;">
+                <a href="#" class="btn-item">
+                    <img class="nav-icon" src="{{ url_for('static', filename='img/ic_sign_out.svg') }}"> Sign Out
+                </a>
+                <img class="logo-bottom" src="{{ url_for('static', filename='img/lemonade_logo.png') }}">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header-top">
+                <h1 style="font-size: 22px; color: #151d48; font-weight: 700;">Finance and Accounting Department</h1>
+                <div class="header-right" style="display: flex; align-items: center; gap: 15px;">
+                    <span class="user-email"><b>email: fin&acc_lemon.cos@bus.vn</b></span>
+                    <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" width="35">
+                </div>
+            </header>
+
+            <section class="dashboard-cards">
+                <div class="card">
+                    <div class="export-wrap">
+                        <button class="btn-export">
+                            <img src="{{ url_for('static', filename='img/ic_export.svg') }}"> Export
+                        </button>
+                    </div>
+                    <h4>Finance Summary</h4>
+                    <img class="card-img" src="{{ url_for('static', filename='img/accountant/acc_totalre_frame.svg') }}">
+                </div>
+                <div class="card">
+                    <h4>Revenue Distribution</h4>
+                    <img class="card-img" src="{{ url_for('static', filename='img/accountant/acc_piefull.svg') }}">
+                </div>
+                <div class="card" style="flex: 1.3;">
+                    <h4>Revenue Growth</h4>
+                    <img class="card-img" src="{{ url_for('static', filename='img/accountant/acc_linefull.svg') }}">
+                </div>
+            </section>
+
+            <div class="table-area">
+                <div class="table-header">
+                    <div style="flex: 1; text-align: center;">DATE</div>
+                    <div style="flex: 1; text-align: center;">ITEMS</div>
+                    <div style="flex: 1; text-align: center;">DEPARTMENT</div>
+                    <div style="flex: 1; text-align: center;">AMOUNT</div>
+                </div>
+            </div>
+
+            <footer class="footer-btns">
+                <a href="#" class="btn-back">
+                    <img src="{{ url_for('static', filename='img/ic_back.svg') }}" style="width: 16px; margin-right: 5px;"> Back
+                </a>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

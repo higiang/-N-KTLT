@@ -1,0 +1,67 @@
+/* RESET ĐỂ SÁT LỀ TUYỆT ĐỐI */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body, html {
+    width: 100%; height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background-color: #fafbfc;
+    overflow: hidden;
+}
+
+.acc-total-revenue { display: flex; width: 100%; height: 100%; }
+
+/* SIDEBAR SÁT LỀ TRÁI */
+.menu-sidebar {
+    width: 260px; height: 100%;
+    background-color: #edf2f9;
+    padding: 30px 20px;
+    display: flex; flex-direction: column;
+    flex-shrink: 0; border-right: 1px solid #eef2f6;
+}
+
+.brand-section { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
+.brand-icon { width: 35px; height: 35px; }
+.brand-text { width: 110px; }
+
+.sidemenu { display: flex; flex-direction: column; gap: 8px; flex-grow: 1; }
+
+.btn-item {
+    display: flex; align-items: center; padding: 12px 15px;
+    border-radius: 12px; text-decoration: none; color: #737791; font-size: 14px;
+}
+
+/* ÉP ICON HIỆN LÊN QUA CLASS */
+.nav-icon { width: 20px; height: 20px; margin-right: 12px; display: block; }
+
+.btn-item.active { background-color: #5d5fef; color: white !important; }
+.btn-item.active .nav-icon { filter: brightness(0) invert(1); }
+
+.logo-bottom { width: 130px; margin: 20px auto 0; display: block; }
+
+/* NỘI DUNG CHÍNH */
+.main-content { flex: 1; display: flex; flex-direction: column; padding: 25px 35px; }
+.header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+
+/* EMAIL IN ĐẬM */
+.user-email { font-size: 13px; color: #151d48; font-weight: 800; }
+
+/* DASHBOARD CARDS & EXPORT */
+.dashboard-cards { display: flex; gap: 20px; margin-bottom: 25px; }
+.card { background: white; border-radius: 24px; padding: 20px; flex: 1; position: relative; box-shadow: 0 4px 25px rgba(0,0,0,0.03); }
+.card h4 { font-size: 14px; color: #151d48; margin-bottom: 15px; font-weight: bold; }
+.card-img { width: 100%; height: auto; display: block; }
+
+.export-wrap { position: absolute; top: 15px; right: 20px; }
+.btn-export {
+    background: white; border: 1px solid #d0d5dd; border-radius: 8px;
+    padding: 6px 14px; font-size: 12px; font-weight: 600;
+    display: flex; align-items: center; gap: 6px; cursor: pointer;
+}
+.btn-export img { width: 14px; }
+
+/* TABLE & BACK */
+.table-area { background: #effffd; border-radius: 24px; flex-grow: 1; padding: 20px; }
+.table-header { display: flex; background: #d6feec; padding: 15px; border-radius: 12px; font-weight: 700; }
+.table-header div { flex: 1; text-align: center; font-size: 13px; }
+
+.footer-btns { display: flex; justify-content: flex-end; margin-top: 15px; }
+.btn-back { display: flex; align-items: center; gap: 6px; color: #737791; text-decoration: none; font-size: 14px; }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Documents - Lemonade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='acc/acc_docs.css') }}" />
+</head>
+<body>
+    <div class="acc-documents-chosen">
+        <aside class="menu-sidebar">
+            <div class="brand-top">
+                <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="brand-img">
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand-logo">
+            </div>
+
+            <nav class="sidemenu">
+                <a href="/dashboard" class="btn-item">
+                    <img src="{{ url_for('static', filename='img/accountant/ic_dashboard.svg') }}" class="nav-ic">
+                    <span>Dashboard</span>
+                </a>
+                <a href="/total-cost" class="btn-item">
+                    <img src="{{ url_for('static', filename='img/accountant/ic_total_cost.svg') }}" class="nav-ic">
+                    <span>Total Cost</span>
+                </a>
+                <a href="/total-revenue" class="btn-item">
+                    <img src="{{ url_for('static', filename='img/accountant/ic_total_revenue.svg') }}" class="nav-ic">
+                    <span>Total Revenue</span>
+                </a>
+                <a href="/finance-report" class="btn-item">
+                    <img src="{{ url_for('static', filename='img/accountant/ic_finance_report.svg') }}" class="nav-ic">
+                    <span>Finance Report</span>
+                </a>
+                <a href="/documents" class="btn-item btn-active">
+                    <img src="{{ url_for('static', filename='img/accountant/ic_documents.svg') }}" class="nav-ic">
+                    <span>Documents</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="/login" class="btn-logout">
+                    <img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}" class="nav-ic">
+                    <span>Sign Out</span>
+                </a>
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="logo-small">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header-main">
+                <h1 class="title">Finance and Accounting Department</h1>
+                <div class="user-box">
+                    <span class="email-bold">fin&acc_lemon.cos@bus.vn</span>
+                    <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="user-img-header">
+                </div>
+            </header>
+
+            <div class="selectfile-area">
+                <h2 class="select-title">Select Files</h2>
+
+                <div class="input-upload-box">
+                    <img src="{{ url_for('static', filename='img/ic_search.svg') }}" class="ic-search-inner">
+                    <span class="text-placeholder">Add here...</span>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-action upload-purple">UPLOAD</button>
+                    <button class="btn-action cancel-grey">CANCEL</button>
+                </div>
+            </div>
+
+            <a href="/finance-report" class="btn-back-footer">
+                <img src="{{ url_for('static', filename='img/ic_back.svg') }}"> Back
+            </a>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --side-bg: #EDF2F9;
+    --primary: #5D5FEF;
+    --dark-blue: #151D48;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+body { background: #FAFBFC; height: 100vh; overflow: hidden; }
+
+.Sales_dashboard_shell { display: flex; height: 100vh; width: 100vw; }
+
+/* Sidebar & Main Area - Giữ nguyên như cũ */
+.menu_sidebar { width: 260px; background: var(--side-bg); display: flex; flex-direction: column; padding: 25px 15px; border-right: 1px solid #E5E7EB; flex-shrink: 0; }
+.logo_top { display: flex; align-items: center; gap: 10px; margin-bottom: 35px; }
+.sidebar_lemon { height: 32px; width: auto; }
+.brand_name_img { height: 18px; width: auto; }
+
+.sidemenu_list { flex: 1; }
+.nav_item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; color: #737791; border-radius: 12px; margin-bottom: 5px; font-weight: 500; cursor: pointer; font-size: 14px; }
+.nav_item img { width: 22px; height: 22px; object-fit: contain; }
+.nav_item.active { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(93, 95, 239, 0.2); }
+.nav_item.active img { filter: brightness(0) invert(1); }
+
+.sidemenu_bottom { border-top: 1px solid #D1D5DB; padding-top: 20px; margin-top: auto; }
+.footer-brand { width: 100%; height: auto; opacity: 0.9; margin-top: 15px; }
+
+.main_content { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+
+/* FIX HEADER: EMAIL BÊN PHẢI - SEARCH Ở GIỮA */
+.header { height: 85px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; border-bottom: 1px solid #F1F1F1; background: #FFF; flex-shrink: 0; }
+.header_title { font-size: 24px; font-weight: 700; color: var(--dark-blue); min-width: 250px; }
+.header_center_search { flex: 1; display: flex; justify-content: center; }
+.search_box { background: #F4F7FE; border-radius: 12px; padding: 10px 18px; display: flex; align-items: center; gap: 12px; border: 1px solid #EFEFEF; width: 350px; }
+.search_box input { border: none; background: transparent; outline: none; width: 100%; font-size: 14px; color: #737791; }
+.header_right_profile { display: flex; align-items: center; gap: 15px; min-width: 250px; justify-content: flex-end; }
+.email_text strong { font-weight: 800 !important; color: var(--dark-blue); font-size: 13px; }
+.user-logo { height: 28px; width: auto; }
+
+/* Scrollable Content */
+.scroll_area { flex: 1; padding: 30px 40px; overflow-y: auto; }
+
+/* FIX NÚT EXPORT CHUẨN CEO */
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.export-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    background: #FFF;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark-blue);
+    transition: 0.2s;
+}
+.export-btn:hover { background: #F8FAFC; border-color: var(--primary); color: var(--primary); }
+.export-btn img { width: 16px; height: 16px; object-fit: contain; }
+
+/* KPI Cards Fix */
+.stats_grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+.card { padding: 20px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 160px; }
+.card_val { font-size: 24px; font-weight: 700; color: var(--dark-blue); margin-top: 5px; }
+.card_label { font-size: 15px; color: #425166; font-weight: 600; margin: 4px 0; }
+.card_trend { font-size: 11px; color: #4079ED; font-weight: 600; }
+
+.icon-circle { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+.fit-icon { width: 22px !important; height: 22px !important; object-fit: contain !important; }
+
+.pink { background: #FFE2E5; } .pink .icon-circle { background: #FA5A7D; }
+.orange { background: #FFF4DE; } .orange .icon-circle { background: #FF947A; }
+.green { background: #DCFCE7; } .green .icon-circle { background: #3CD856; }
+.purple { background: #F3E8FF; } .purple .icon-circle { background: #BF83FF; }
+
+/* Bottom Grid & Footer */
+.chart-calendar-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; min-height: 300px; padding-bottom: 20px; }
+.placeholder-box { background: #FFF; border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; }
+.sal-footer-bar { height: 65px; padding: 0 40px; background: #FAFBFC; border-top: 1px solid #F1F1F1; display: flex; justify-content: flex-end; align-items: center; flex-shrink: 0; }
+.sal-back-btn { display: flex; align-items: center; gap: 8px; border: none; background: transparent; color: #737791; font-weight: 600; cursor: pointer; font-size: 14px; }

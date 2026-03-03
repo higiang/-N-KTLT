@@ -1,0 +1,78 @@
+:root {
+    --bg: #F9FAFB;
+    --sidebar: #EDF2F9;
+    --primary: #5D5FEF;
+    --dark-blue: #151D48;
+    --text-grey: #737791;
+}
+
+body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); overflow: hidden; }
+.container { display: flex; height: 100vh; }
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: 280px;
+    background: var(--sidebar);
+    display: flex;
+    flex-direction: column;
+    padding: 40px 15px; /* Giảm padding ngang một chút để gọn hơn */
+    border-right: 1px solid #E5E7EB;
+}
+
+.logo-top { display: flex; align-items: center; gap: 12px; margin-bottom: 50px; padding-left: 15px; }
+
+.nav-menu { flex-grow: 1; } /* Chiếm không gian giữa để đẩy footer xuống */
+
+.nav-item {
+    display: flex; align-items: center; gap: 15px; padding: 14px 20px;
+    color: var(--text-grey); border-radius: 12px; margin-bottom: 8px;
+    cursor: pointer; font-weight: 600; text-decoration: none; transition: 0.3s;
+}
+.nav-item img { width: 22px; height: 22px; }
+.nav-item.active { background: var(--primary); color: white; box-shadow: 0 8px 15px rgba(93, 95, 239, 0.2); }
+.nav-item.active img { filter: brightness(0) invert(1); }
+
+/* Đẩy Sign Out xuống đáy sidebar */
+.sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #DDE4EE; }
+.sign-out-item { margin-bottom: 20px; }
+.brand-footer-img { display: block; margin: 0 auto; width: 140px; opacity: 0.8; }
+
+/* --- MAIN CONTENT (Đã thêm khoảng cách với Sidebar) --- */
+.main {
+    flex-grow: 1;
+    padding: 40px 60px; /* Tăng padding trái lên 60px để cách sidemenu ra */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* --- HEADER --- */
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+
+.dept-title {
+    color: var(--dark-blue);
+    margin: 0;
+    font-size: 19px; /* Nhỏ lại một chút nữa theo yêu cầu */
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.search-bar { background: #F4F7FE; border-radius: 15px; padding: 10px 20px; display: flex; align-items: center; width: 320px; }
+.search-bar input { border: none; background: transparent; outline: none; width: 100%; margin-left: 10px; font-size: 14px; }
+
+.admin-info { display: flex; align-items: center; gap: 10px; }
+.email-text { font-size: 12px; color: var(--dark-blue); white-space: nowrap; }
+
+/* --- TABLE CARD --- */
+.table-card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 4px 25px rgba(0,0,0,0.03); flex-grow: 1; }
+.table-title { font-size: 26px; font-weight: 700; color: var(--dark-blue); margin-bottom: 20px; }
+
+/* Các phần Table header và row giữ nguyên logic */
+.table-header { display: flex; font-weight: 600; color: #96A0AF; border-bottom: 1px solid #F3F4F6; padding-bottom: 15px; font-size: 13px; }
+.table-row { display: flex; padding: 18px 0; border-bottom: 1px solid #F9FAFB; font-size: 14px; color: var(--dark-blue); }
+.col1 { width: 35%; font-weight: 600; } .col2 { width: 20%; } .col3 { width: 20%; } .col4 { width: 25%; }
+
+/* --- BACK BUTTON --- */
+.footer-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-bottom: 20px; }
+.back-btn-minimal { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.back-btn-minimal span { color: var(--text-grey); font-weight: 500; font-size: 14px; }
