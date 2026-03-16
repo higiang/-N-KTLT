@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --side-bg: #EDF2F9;
+    --primary: #5D5FEF;
+    --dark-blue: #151D48;
+}
+
+/* --- 1. RESET & CƠ BẢN  --- */
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Poppins', sans-serif; background: #FAFBFC; height: 100vh; overflow: hidden; }
+
+.mkt-dashboard-chosen { display: flex; height: 100vh; width: 100vw; }
+
+/* --- 2. SIDEBAR--- */
+.sidebar {
+    width: 280px !important;
+    min-width: 280px !important;
+    height: 100vh;
+    background: var(--side-bg) !important;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 25px;
+    border-right: 1px solid #E5E7EB;
+    flex-shrink: 0 !important;
+}
+
+.logo-top { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+.lemon-icon-sidebar { height: 40px !important; width: auto; }
+.brand-logo-top { height: 30px !important; width: auto; }
+
+.menu { flex: 1; }
+.menu-item {
+    display: flex; align-items: center; padding: 12px 15px;
+    color: #737791; border-radius: 12px; margin-bottom: 5px;
+    cursor: pointer; font-size: 14px; font-weight: 500 !important;
+}
+
+.menu-item img { width: 22px; height: 22px; object-fit: contain; margin-right: 15px; }
+.menu-item.active {
+    background: var(--primary) !important;
+    color: white !important;
+    box-shadow: 0 10px 20px rgba(93, 95, 239, 0.2);
+    font-weight: 600 !important;
+}
+.menu-item.active img { filter: brightness(0) invert(1) !important; }
+
+/* Sidebar Bottom (Sign Out & Logo) */
+.sidebar-bottom { margin-top: auto; padding-top: 20px; flex-shrink: 0; }
+.footer-logo {
+    width: 200px !important; height: auto; opacity: 0.7;
+    display: block; margin: 30px auto 10px auto !important;
+}
+
+/* --- 3. MAIN CONTENT  --- */
+.content {
+    flex: 1;
+    padding: 20px 30px !important;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- 4. HEADER  --- */
+.header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px !important; padding: 0 !important;
+    background: transparent !important; flex-shrink: 0;
+}
+
+.header h1.nowrap { font-size: 22px !important; font-weight: 700; color: var(--dark-blue); margin: 0; }
+.header-tools { display: flex; align-items: center; gap: 20px; }
+.email-text strong { font-size: 12px !important; font-weight: 800 !important; color: #000 !important; }
+.lemon-header-icon { height: 26px !important; width: auto; object-fit: contain; }
+
+/* --- 5. NỘI DUNG CUỘN --- */
+.summary h2 { font-size: 18px; font-weight: 700; color: var(--dark-blue); margin-bottom: 15px; }
+
+/* KPI GRID - KHÔNG CHO NHẢY DÒNG */
+.card-grid {
+    display: flex !important;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: nowrap !important;
+}
+
+.card {
+    flex: 1; padding: 20px; border-radius: 20px;
+    display: flex; flex-direction: column; min-width: 0;
+}
+
+.card .val { font-size: 22px !important; font-weight: 700; color: var(--dark-blue); margin: 5px 0; }
+.card .label { font-size: 13px; font-weight: 600; color: #425166; }
+.card .trend { font-size: 11px; font-weight: 600; color: #4079ED; }
+
+.card.pink { background: #FFE2E5; }
+.card.green { background: #DCFCE7; }
+.card.purple { background: #F3E8FF; }
+
+.icon-bg { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+.icon-bg img { width: 22px; height: 22px; object-fit: contain; }
+
+.card.pink .icon-bg { background: #FA5A7D; }
+.card.green .icon-bg { background: #3CD856; }
+.card.purple .icon-bg { background: #BF83FF; }
+
+/* TABLE SECTION */
+.campaigns {
+    background: white; padding: 20px; border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #eee;
+    flex: 1; display: flex; flex-direction: column; overflow: hidden;
+}
+
+.table-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 15px; flex-shrink: 0;
+}
+.table-header h2 { font-size: 18px; font-weight: 700; color: var(--dark-blue); }
+
+.export-btn {
+    display: flex; align-items: center; gap: 6px; padding: 8px 16px;
+    border: 1px solid #E2E8F0; border-radius: 10px; background: #FFF;
+    font-size: 13px; font-weight: 600; color: var(--dark-blue); cursor: pointer;
+}
+.export-btn img { width: 14px; }
+
+/* Table cuộn nội dung */
+.table { width: 100%; border-collapse: collapse; }
+.table th { color: #737791; font-size: 13px; font-weight: 600; padding: 12px; text-align: left; border-bottom: 1px solid #F1F1F1; }
+.table td { padding: 12px; font-size: 13px; color: var(--dark-blue); border-bottom: 1px solid #F1F1F1; }
+
+.p-bar { width: 90px; height: 6px; background: #F0F0F0; border-radius: 3px; overflow: hidden; }
+
+/* --- 6. NÚT BACK CỐ ĐỊNH --- */
+.table-footer {
+    position: fixed !important;
+    bottom: 15px !important;
+    right: 20px !important;
+    background: transparent !important;
+    z-index: 100;
+}
+
+.back-btn {
+    display: flex; align-items: center; gap: 8px;
+    color: #737791; font-weight: 600; font-size: 13px; cursor: pointer;
+}
+.back-btn img { width: 18px; }
