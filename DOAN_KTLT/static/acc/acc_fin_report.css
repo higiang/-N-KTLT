@@ -1,82 +1,67 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body, html {
-    width: 100%; height: 100vh;
-    font-family: 'Inter', sans-serif;
-    background: #fafbfc;
-    overflow: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --side-bg: #EDF2F9;
+    --primary: #5D5FEF;
+    --dark-blue: #151D48;
 }
 
-.acc-finance-report { display: flex; width: 100%; height: 100%; }
+/* RESET & GLOBAL */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif !important; -webkit-font-smoothing: antialiased; }
+body { width: 100vw; height: 100vh; background: #FAFBFC; overflow: hidden; }
 
-/* SIDEBAR */
-.menu-sidebar {
-    width: 280px; background: #edf2f9;
-    display: flex; flex-direction: column;
-    padding: 25px 20px; border-right: 1px solid #eef2f6;
-}
-.brand-top { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
-.brand-img { width: 40px; }
-.brand-logo { width: 110px; }
+.acc-app-container { display: flex; width: 100vw; height: 100vh; }
 
-.sidemenu { display: flex; flex-direction: column; gap: 4px; flex-grow: 1; }
+/* SIDEBAR (Đồng bộ chuẩn 280px Sales/CEO) */
+.menu-sidebar { width: 280px; height: 100vh; background: var(--side-bg); display: flex; flex-direction: column; padding: 30px 25px; border-right: 1px solid #E5E7EB; flex-shrink: 0; position: sticky; top: 0; }
+.logo-top { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+.sidebar-lemon { height: 40px !important; width: auto !important; object-fit: contain; }
+.brand-name-img { height: 30px !important; width: auto !important; object-fit: contain; }
 
-.btn-item {
-    display: flex; align-items: center;
-    padding: 10px 15px; border-radius: 12px;
-    text-decoration: none; color: #737791; font-size: 14px;
-}
+.sidemenu { flex: 1; display: flex; flex-direction: column; gap: 0; }
+.nav-item { display: flex; align-items: center; gap: 15px !important; padding: 12px 15px !important; color: #737791; border-radius: 12px; cursor: pointer; font-size: 14px !important; font-weight: 500 !important; margin-bottom: 5px; text-decoration: none; }
+.nav-item svg { width: 24px !important; height: 24px !important; object-fit: contain !important; margin-right: 0 !important; }
+.nav-item.active { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(93, 95, 239, 0.2); }
 
-/* ĐỒNG BỘ MÀU ICON SIDEMENU */
-.nav-ic {
-    width: 22px; height: 22px; margin-right: 12px;
-    filter: invert(52%) sepia(13%) saturate(575%) hue-rotate(192deg) brightness(92%) contrast(88%);
-}
+/* FOOTER SIDEBAR */
+.sidebar-footer { margin-top: auto; padding-top: 20px; border-top: none; width: 100%; }
+.nav-item-logout { display: flex; align-items: center; gap: 15px !important; padding: 12px 15px !important; color: #737791; border-radius: 12px; margin-bottom: 5px; font-weight: 500 !important; cursor: pointer; font-size: 14px !important; width: 100%; text-decoration: none; }
+.nav-item-logout svg { width: 24px !important; height: 24px !important; object-fit: contain !important; }
+.lemonade-logo-bottom { width: 200px !important; height: auto; opacity: 0.7; margin-top: 30px; display: block; margin-left: auto; margin-right: auto; }
 
-.btn-active { background: #5d5fef; color: white !important; font-weight: 700; }
-.btn-active .nav-ic { filter: brightness(0) invert(1); }
+/* HEADER TRẮNG VẮT NGANG */
+.main-content { flex: 1; display: flex; flex-direction: column; padding: 0 !important; overflow: hidden !important; height: 100vh !important; }
 
-/* SIGN OUT */
-.btn-logout {
-    display: flex; align-items: center;
-    padding: 10px 15px; margin-bottom: 10px;
-    text-decoration: none; color: #737791; font-weight: 600; font-size: 14px;
-}
-.btn-logout:hover { color: #FF5B5B; }
-.btn-logout:hover .nav-ic { filter: invert(47%) sepia(81%) saturate(3015%) hue-rotate(334deg) brightness(101%) contrast(101%); }
+.header-fixed { background: #FFFFFF !important; padding: 20px 40px !important; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #F1F1F1 !important; z-index: 100; flex-shrink: 0; margin-bottom: 0 !important; height: auto; width: 100% !important; }
+.header-title { font-size: 24px !important; font-weight: 700 !important; color: var(--dark-blue) !important; margin: 0; }
 
-.logo-small { width: 100px; opacity: 0.3; margin: 0 auto; display: block; }
+.header-right { display: flex; align-items: center; gap: 25px !important; margin-left: auto; }
+.search-box { background: #F9FAFB !important; border-radius: 12px !important; padding: 8px 15px !important; display: flex; align-items: center; gap: 10px; width: 240px !important; border: 1px solid #F0F0F0 !important; }
+.search-box input { border: none !important; background: transparent !important; outline: none !important; width: 100% !important; font-size: 13px !important; color: var(--dark-blue); }
 
-/* MAIN CONTENT */
-.main-content {
-    flex: 1; padding: 20px 40px;
-    display: flex; flex-direction: column;
-    height: 100vh; position: relative;
-}
-.header-main { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-.title { font-size: 22px; font-weight: 700; color: #151d48; }
+.profile-right { display: flex; align-items: center; gap: 10px; min-width: unset !important; }
+.email-bold { font-weight: 800 !important; font-size: 12px !important; color: #000000 !important; text-decoration: none !important; }
+.user-logo { height: 26px !important; width: auto !important; object-fit: contain !important; }
 
-/* FIX LOGO HEADER THẲNG HÀNG */
-.user-box { display: flex; align-items: center; gap: 15px; }
-.email-bold { font-weight: 900; color: #151d48; font-size: 15px; }
-.user-img-header { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+/* KHU VỰC CUỘN NỘI DUNG BIỂU ĐỒ */
+.scrollable-content { flex: 1; padding: 30px 40px !important; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
 
-/* CHARTS GRID - KHÔNG SCROLL */
-.charts-grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1.1fr;
-    gap: 15px;
-    flex-grow: 1;
-    min-height: 0;
-    margin-bottom: 45px;
-}
-.chart-card {
-    background: white; border-radius: 20px;
-    padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    display: flex; flex-direction: column; min-height: 0;
-}
-.card-head { font-weight: 700; color: #151d48; margin-bottom: 10px; font-size: 15px; }
-.chart-card img { width: 100%; height: 100%; object-fit: contain; }
-.profit-wide { grid-column: 1 / span 2; }
+/* CHARTS LAYOUT */
+.top-row-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex-shrink: 0; min-height: 350px; }
+.bottom-row-chart { background: white; border-radius: 20px; padding: 20px 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; flex: 1; min-height: 350px; overflow: hidden; }
 
-.btn-back-footer { position: absolute; bottom: 15px; right: 40px; display: flex; align-items: center; gap: 8px; color: #737791; text-decoration: none; font-weight: 700; }
+.box-card { background: white; border-radius: 20px; padding: 20px 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; }
+
+.plotly-wrap { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; overflow: visible; min-height: 0; }
+
+.chart-title-area { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 15px; border-bottom: 2px solid #F1F5F9; padding-bottom: 10px; flex-shrink: 0;}
+.chart-title { margin: 0; color: var(--dark-blue); font-weight: 800; font-size: 16px; position: relative; }
+.chart-title::after { content: ''; position: absolute; bottom: -12px; left: 0; width: 40px; height: 3px; background: var(--primary); border-radius: 5px; }
+
+/* Nút Export nhỏ gọn góc phải */
+.btn-export-sm { padding: 6px 12px; border: 1px solid #E2E8F0; border-radius: 8px; background: white; cursor: pointer; font-weight: 700; font-size: 12px; display: flex; align-items: center; gap: 6px; color: var(--dark-blue); text-decoration: none; transition: 0.2s; }
+.btn-export-sm:hover { background: #F8FAFC; }
+
+/* FOOTER DƯỚI CÙNG CHỨA NÚT BACK */
+.footer-fixed { height: 60px; border-top: 1px solid #F1F1F1; padding: 0 40px; display: flex; justify-content: flex-end; align-items: center; flex-shrink: 0; background: #FAFBFC; }
+.btn-back { display: flex; align-items: center; gap: 8px; border: none; background: transparent; color: #737791; font-weight: 600; cursor: pointer; text-decoration: none; font-size: 14px; }
