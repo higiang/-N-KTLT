@@ -2,59 +2,82 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lemonade Management System</title>
+    <title>User Info | Lemonade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='log_in.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='user_info.css') }}" />
 </head>
 <body>
-    <div class="user-info-screen">
-        <div class="lemonade-container">
-            <div class="welcome-text">Welcome to</div>
-            <div class="logo-wrapper">
-                <img class="logo-img" src="{{ url_for('static', filename='img/img_lemonade.png') }}" alt="Logo">
-                <span class="logo-text">LEMONADE</span>
+    <div class="main-layout">
+
+        <div class="form-side">
+            <div class="form-wrapper">
+                <h1 class="title">Log in</h1>
+                <p class="subtitle">Let your beauty speak for itself.</p>
+                <form>
+                    <input type="email" class="input-item" placeholder="Email" disabled>
+                    <input type="password" class="input-item" placeholder="Password" disabled>
+                    <div class="role-group">
+                        <label>
+                            <input type="radio" disabled {% if user['role'] == 'admin' %}checked{% endif %}> Admin
+                        </label>
+                        <label>
+                            <input type="radio" disabled {% if user['role'] != 'admin' %}checked{% endif %}> User
+                        </label>
+                    </div>
+                    <button type="button" class="btn-submit" disabled>Log in</button>
+                </form>
+                <p class="link-text">New to Lemonade? <a href="#">Create an account</a></p>
             </div>
         </div>
 
-        <div class="user-info-panel">
+        <div class="decor-side">
+
+
+
             <div class="user-icon-wrapper">
-                <img src="{{ url_for('static', filename='img/user.svg') }}" alt="User Icon">
+                <img src="{{ url_for('static', filename='img/image/user.svg') }}" alt="User Icon">
             </div>
 
             <div class="instruction">
-                <span style="border: 1px solid #000; border-radius: 50%; width: 16px; height: 16px; display: inline-flex; justify-content: center; align-items: center; font-size: 11px;">i</span>
+                <span>!</span>
                 Please check and fill in your information carefully
             </div>
 
-            <div class="form-group">
-                <label>Department</label>
-                <input type="text" placeholder="Sales">
-            </div>
+            <form method="POST" action="">
 
-            <div class="form-group">
-                <label>Department’s<br>Manager</label>
-                <input type="text" placeholder="Manager Name">
-            </div>
+                <div class="input-group">
+                    <label>Department</label>
+                    <input type="text" name="department" value="{{ user['department'] if user['department'] else '' }}">
+                </div>
 
-            <div class="form-group">
-                <label>Phone</label>
-                <input type="text" placeholder="Your phone number">
-            </div>
+                <div class="input-group">
+                    <label>Department's Manager</label>
+                    <input type="text" name="manager" value="{{ user['manager'] if user['manager'] else '' }}">
+                </div>
 
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="email@lemonade.vn">
-            </div>
+                <div class="input-group">
+                    <label>Phone</label>
+                    <input type="text" name="phone" value="{{ user['phone'] if user['phone'] else '' }}">
+                </div>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" placeholder="********">
-            </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" name="email" value="{{ user['email'] }}" readonly>
+                </div>
 
-            <div class="button-group">
-                <button class="btn-confirm">Confirm</button>
-                <button class="btn-logout">Log out</button>
-            </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" name="password" value="{{ user['password'] }}" readonly>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-confirm">Confirm</button>
+                    <a href="{{ url_for('logout') }}" class="btn-logout">Log out</a>
+                </div>
+            </form>
+
         </div>
     </div>
 </body>
