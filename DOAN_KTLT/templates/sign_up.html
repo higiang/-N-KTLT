@@ -12,18 +12,24 @@
             <div class="form-wrapper">
                 <h1 class="title">Sign up</h1>
                 <p class="subtitle">Join us to express your beauty.</p>
-                <form action="/register" method="POST">
-                    <input type="text" class="input-item" placeholder="Full Name" required>
-                    <input type="email" class="input-item" placeholder="Email" required>
-                    <input type="password" class="input-item" placeholder="Password" required>
-                    <button type="submit" class="btn-submit">Sign up</button>
+                <form method="POST" action="{{ url_for('signup') }}">
+
+                    {% if error %}
+                        <p style="color: #ff6b6b; text-align: center; font-size: 14px; margin-bottom: 10px;">
+                            {{ error }}
+                        </p>
+                    {% endif %}
+                    <input type="email" class="input-item" name = "email" placeholder="Email" required>
+                    <input type="password" class="input-item"  name = "password"placeholder="Password" required>
+                    <input type="password" class="input-item" name = "confirm_password" placeholder="Confirm password" required>
+                    <button type="submit" class="btn-submit">Create an account</button>
                 </form>
-                <p class="link-text">Already have an account? <a href="/">Log in</a></p>
+                <p class="link-text">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
             </div>
         </div>
         <div class="decor-side">
-            <img src="{{ url_for('static', filename='img/brand_logo.png') }}" class="bg-image">
-            <img src="{{ url_for('static', filename='img/lemon_decor.png') }}" class="lemon-image">
+            <img src="{{ url_for('static', filename='image/brand_logo.png') }}" class="bg-image">
+            <img src="{{ url_for('static', filename='image/lemon_decor.png') }}" class="lemon-image">
         </div>
     </div>
 </body>

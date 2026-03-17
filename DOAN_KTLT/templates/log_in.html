@@ -12,16 +12,22 @@
             <div class="form-wrapper">
                 <h1 class="title">Log in</h1>
                 <p class="subtitle">Let your beauty speak for itself.</p>
-                <form action="/login" method="POST">
-                    <input type="email" class="input-item" placeholder="Email" required>
-                    <input type="password" class="input-item" placeholder="Password" required>
+                <form method="POST" action="{{ url_for('login') }}">
+                    {% if error %}
+
+                        <p style="color: #ff6b6b; text-align: center; font-size: 14px; margin-bottom: 10px;">
+                            {{ error }}
+                        </p>
+                    {% endif %}
+                    <input type="email" class="input-item" name ="email" placeholder="Email" required>
+                    <input type="password" class="input-item" name = "password" placeholder="Password" required>
                     <div class="role-group">
-                        <label><input type="radio" name="role" checked> Admin</label>
-                        <label><input type="radio" name="role"> User</label>
+                        <label><input type="radio" name="role" value = "admin"> Admin</label>
+                        <label><input type="radio" name="role" value = "user"> User</label>
                     </div>
                     <button type="submit" class="btn-submit">Log in</button>
                 </form>
-                <p class="link-text">New to Lemonade? <a href="/signup">Create an account</a></p>
+                <p class="link-text">New to Lemonade? <a href="{{ url_for('signup') }}">Create an account</a></p>
             </div>
         </div>
         <div class="decor-side">

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finance Report - Lemonade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='accfin/acc_fin_report.css') }}" />
+</head>
+<body>
+    <div class="acc-app-container">
+        <aside class="menu-sidebar">
+            <div class="logo-top">
+                <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="sidebar-lemon" alt="Lemon">
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand-name-img" alt="LEMONADE">
+            </div>
+
+            <nav class="sidemenu">
+                <a href="/acc/dashboard" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="/acc/total-cost" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <span>Total Cost</span>
+                </a>
+                <a href="/acc/total-revenue" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span>Total Revenue</span>
+                </a>
+                <a href="/acc/finance-report" class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    <span>Finance Report</span>
+                </a>
+                <a href="/acc/documents" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>Documents</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="/logout" class="nav-item-logout">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    <span>Sign Out</span>
+                </a>
+                <img class="lemonade-logo-bottom" src="{{ url_for('static', filename='img/lemonade_logo.png') }}">
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="header-fixed">
+                <h1 class="header-title">Finance and Accounting Department</h1>
+                <div class="header-right">
+                    <div class="search-box">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" placeholder="Search here...">
+                    </div>
+                    <div class="profile-right">
+                        <span class="email-bold">fin&acc_lemon.cos@bus.vn</span>
+                        <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="user-logo">
+                    </div>
+                </div>
+            </header>
+
+            <main class="scrollable-content">
+
+                <div class="top-row-charts">
+                    <div class="box-card">
+                        <div class="chart-title-area">
+                            <h3 class="chart-title">Cash Flow Forecast</h3>
+                        </div>
+                        <div class="plotly-wrap">{{ cf_line|safe }}</div>
+                    </div>
+
+                    <div class="box-card">
+                        <div class="chart-title-area">
+                            <h3 class="chart-title">Profit</h3>
+                            <a onclick="exportFile('/acc/export-finance-report')" class="btn-export-sm">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                Export
+                            </a>
+                        </div>
+                        <div class="plotly-wrap">{{ rev_cost_bar|safe }}</div>
+                    </div>
+                </div>
+
+                <div class="bottom-row-chart">
+                    <div class="chart-title-area">
+                        <h3 class="chart-title">Comparison between Revenue and Cost</h3>
+                    </div>
+                    <div class="plotly-wrap">{{ profit_bar|safe }}</div>
+                </div>
+
+            </main>
+
+            <footer class="footer-fixed">
+                {% if is_admin %}
+                <a href="/dashboard" class="btn-back">
+                    <img src="{{ url_for('static', filename='img/ic_back.svg') }}" width="24">
+                    <span>Back</span>
+                </a>
+                {% else %}
+                <a class="btn-back" style="opacity: 0.4; cursor: not-allowed;" title="Chỉ CEO mới có quyền quay lại trang tổng quan">
+                    <img src="{{ url_for('static', filename='img/ic_back.svg') }}" width="24">
+                    <span>Back</span>
+                </a>
+                {% endif %}
+            </footer>
+        </div>
+    </div>
+
+    <script>
+    async function exportFile(url) {
+        const res = await fetch(url);
+        const data = await res.json();
+        alert(data.message);
+    }
+    </script>
+</body>
+</html>
