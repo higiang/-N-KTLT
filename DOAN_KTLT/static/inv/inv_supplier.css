@@ -1,78 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 :root {
-    --bg: #F9FAFB;
-    --sidebar: #EDF2F9;
+    --side-bg: #EDF2F9;
     --primary: #5D5FEF;
     --dark-blue: #151D48;
-    --text-grey: #737791;
 }
 
-body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); overflow: hidden; }
-.container { display: flex; height: 100vh; }
+/* RESET & GLOBAL */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif !important; -webkit-font-smoothing: antialiased; }
+body { width: 100vw; height: 100vh; background: #FAFBFC; overflow: hidden; }
 
-/* --- SIDEBAR --- */
-.sidebar {
-    width: 280px;
-    background: var(--sidebar);
-    display: flex;
-    flex-direction: column;
-    padding: 40px 15px; /* Giảm padding ngang một chút để gọn hơn */
-    border-right: 1px solid #E5E7EB;
-}
+.inv-app-container { display: flex; width: 100vw; height: 100vh; }
 
-.logo-top { display: flex; align-items: center; gap: 12px; margin-bottom: 50px; padding-left: 15px; }
+/* SIDEBAR (Đồng bộ 100% Dashboard) */
+.menu-sidebar { width: 280px; height: 100vh; background: var(--side-bg); display: flex; flex-direction: column; padding: 30px 25px; border-right: 1px solid #E5E7EB; flex-shrink: 0; position: sticky; top: 0; }
+.logo-top { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+.sidebar-lemon { height: 40px !important; width: auto !important; object-fit: contain; }
+.brand-name-img { height: 30px !important; width: auto !important; object-fit: contain; }
 
-.nav-menu { flex-grow: 1; } /* Chiếm không gian giữa để đẩy footer xuống */
-
-.nav-item {
-    display: flex; align-items: center; gap: 15px; padding: 14px 20px;
-    color: var(--text-grey); border-radius: 12px; margin-bottom: 8px;
-    cursor: pointer; font-weight: 600; text-decoration: none; transition: 0.3s;
-}
-.nav-item img { width: 22px; height: 22px; }
-.nav-item.active { background: var(--primary); color: white; box-shadow: 0 8px 15px rgba(93, 95, 239, 0.2); }
+.sidemenu { flex: 1; display: flex; flex-direction: column; gap: 0; }
+.nav-item { display: flex; align-items: center; gap: 15px !important; padding: 12px 15px !important; color: #737791; border-radius: 12px; cursor: pointer; font-size: 14px !important; font-weight: 500 !important; margin-bottom: 5px; text-decoration: none; }
+.nav-item img { width: 24px !important; height: 24px !important; object-fit: contain !important; margin-right: 0 !important; }
+.nav-item.active { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(93, 95, 239, 0.2); }
 .nav-item.active img { filter: brightness(0) invert(1); }
 
-/* Đẩy Sign Out xuống đáy sidebar */
-.sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #DDE4EE; }
-.sign-out-item { margin-bottom: 20px; }
-.brand-footer-img { display: block; margin: 0 auto; width: 140px; opacity: 0.8; }
+/* FOOTER SIDEBAR */
+.sidebar-footer { margin-top: auto; padding-top: 20px; border-top: none; width: 100%; }
+.nav-item-logout { display: flex; align-items: center; gap: 15px !important; padding: 12px 15px !important; color: #737791; border-radius: 12px; margin-bottom: 5px; font-weight: 500 !important; cursor: pointer; font-size: 14px !important; width: 100%; text-decoration: none; }
+.nav-item-logout img { width: 24px !important; height: 24px !important; object-fit: contain !important; }
+.lemonade-logo-bottom { width: 200px !important; height: auto; opacity: 0.7; margin-top: 30px; display: block; margin-left: auto; margin-right: auto; }
 
-/* --- MAIN CONTENT (Đã thêm khoảng cách với Sidebar) --- */
-.main {
-    flex-grow: 1;
-    padding: 40px 60px; /* Tăng padding trái lên 60px để cách sidemenu ra */
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-}
+/* HEADER TRẮNG VẮT NGANG */
+.main-content { flex: 1; display: flex; flex-direction: column; padding: 0 !important; overflow: hidden !important; height: 100vh !important; }
 
-/* --- HEADER --- */
-.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+.header-fixed { background: #FFFFFF !important; padding: 20px 40px !important; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #F1F1F1 !important; z-index: 100; flex-shrink: 0; margin-bottom: 0 !important; height: auto; width: 100% !important; }
+.header-title { font-size: 24px !important; font-weight: 700 !important; color: #151D48 !important; margin: 0; }
 
-.dept-title {
-    color: var(--dark-blue);
-    margin: 0;
-    font-size: 19px; /* Nhỏ lại một chút nữa theo yêu cầu */
-    font-weight: 800;
-    white-space: nowrap;
-}
+.header-right { display: flex; align-items: center; gap: 25px !important; margin-left: auto; }
+.search-box { background: #F9FAFB !important; border-radius: 12px !important; padding: 8px 15px !important; display: flex; align-items: center; gap: 10px; width: 240px !important; border: 1px solid #F0F0F0 !important; }
+.search-box input { border: none !important; background: transparent !important; outline: none !important; width: 100% !important; font-size: 13px !important; color: #151D48; }
 
-.search-bar { background: #F4F7FE; border-radius: 15px; padding: 10px 20px; display: flex; align-items: center; width: 320px; }
-.search-bar input { border: none; background: transparent; outline: none; width: 100%; margin-left: 10px; font-size: 14px; }
+.profile-right { display: flex; align-items: center; gap: 10px; min-width: unset !important; }
+.email-bold { font-weight: 800 !important; font-size: 12px !important; color: #000000 !important; text-decoration: none !important; }
+.user-logo { height: 26px !important; width: auto !important; object-fit: contain !important; }
 
-.admin-info { display: flex; align-items: center; gap: 10px; }
-.email-text { font-size: 12px; color: var(--dark-blue); white-space: nowrap; }
+/* KHU VỰC CUỘN NỘI DUNG */
+.scrollable-content { flex: 1; padding: 30px 40px !important; overflow-y: auto; display: flex; flex-direction: column; gap: 25px; }
 
-/* --- TABLE CARD --- */
-.table-card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 4px 25px rgba(0,0,0,0.03); flex-grow: 1; }
-.table-title { font-size: 26px; font-weight: 700; color: var(--dark-blue); margin-bottom: 20px; }
+/* BẢNG SUPPLIER (Dùng chung style viền đứt, bo góc) */
+.table-container { background: #FFF; border-radius: 16px; border: 1.5px dashed #CBD5E1; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; flex-shrink: 0; padding: 20px 0; height: 100%; }
 
-/* Các phần Table header và row giữ nguyên logic */
-.table-header { display: flex; font-weight: 600; color: #96A0AF; border-bottom: 1px solid #F3F4F6; padding-bottom: 15px; font-size: 13px; }
-.table-row { display: flex; padding: 18px 0; border-bottom: 1px solid #F9FAFB; font-size: 14px; color: var(--dark-blue); }
-.col1 { width: 35%; font-weight: 600; } .col2 { width: 20%; } .col3 { width: 20%; } .col4 { width: 25%; }
+.table-title { font-size: 20px !important; font-weight: 800 !important; color: #151d48 !important; margin: 0 0 15px 30px; }
 
-/* --- BACK BUTTON --- */
-.footer-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-bottom: 20px; }
-.back-btn-minimal { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-.back-btn-minimal span { color: var(--text-grey); font-weight: 500; font-size: 14px; }
+/* TABLE HEADER & ROWS */
+.table-header { display: flex; padding: 12px 0; background: #F8FAFC; border-bottom: 1px solid #E5E7EB; border-top: 1px solid #E5E7EB; }
+.th-col { font-weight: 700; font-size: 14px; color: #425166; }
+
+.table-body { flex: 1; overflow-y: auto; } /* Giúp nội dung bảng có thể cuộn được */
+.table-row { display: flex; padding: 15px 0; border-bottom: 1px solid #F1F1F1; align-items: center; }
+.td-col { font-size: 14px; }
+
+/* Định dạng riêng cho cột Supplier */
+.company-col { font-weight: 700; color: #151D48; }
+.phone-col { font-weight: 600; color: #737791; }
+.category-col { font-weight: 700; color: #151D48; }
+.location-col { font-weight: 600; color: #425166; }
+
+/* FOOTER DƯỚI CÙNG & PAGINATION */
+/* Thêm justify-content: space-between để tự động đẩy Pagination sang trái, Back sang phải */
+.footer-fixed { height: 60px; border-top: 1px solid #F1F1F1; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; background: #FAFBFC; }
+
+.pagination-controls { display: flex; align-items: center; gap: 5px; font-weight: 700; font-size: 14px; color: #151d48; cursor: pointer; user-select: none; }
+.page-btn { padding: 4px 10px; border-radius: 6px; transition: 0.2s; }
+.page-btn:hover { background: #EDF2F9; }
+.page-num { padding: 4px 10px; border-radius: 6px; transition: 0.2s; }
+.page-num:hover { background: #EDF2F9; }
+.active-page { color: var(--primary); background: #EDF2F9; }
+
+.btn-back { display: flex; align-items: center; gap: 8px; border: none; background: transparent; color: #737791; font-weight: 600; cursor: pointer; text-decoration: none; font-size: 14px; }
