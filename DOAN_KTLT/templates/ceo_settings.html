@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lemonade - CEO Settings</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='ceo/ceo_dashboard.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='ceo/ceo_settings.css') }}">
+</head>
+
+<body>
+<div class="CEO_mainscreen">
+
+    <!-- SIDEBAR -->
+    <aside class="menu_sidebar">
+        <div class="logo_top">
+            <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="sidebar_lemon">
+            <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand_name_img">
+        </div>
+
+        <nav class="sidemenu">
+            <div class="nav_item" onclick="location.href='/mkt/dashboard'">
+                <img src="{{ url_for('static', filename='img/ceo/ic_dashboard.svg') }}">
+                <span>Dashboard</span>
+            </div>
+
+            <div class="nav_item" onclick="location.href='/reports'">
+                <img src="{{ url_for('static', filename='img/ceo/ic_reports.svg') }}">
+                <span>Reports</span>
+            </div>
+
+            <div class="nav_item" onclick="location.href='/inv/dashboard'">
+                <img src="{{ url_for('static', filename='img/ceo/ic_inventory.svg') }}">
+                <span>Inventory</span>
+            </div>
+
+            <div class="nav_item" onclick="location.href='/sales'">
+                <img src="{{ url_for('static', filename='img/ceo/ic_sales_report.svg') }}">
+                <span>Sales Report</span>
+            </div>
+
+            <div class="nav_item" onclick="location.href='/mkt/dashboard'">
+                <img src="{{ url_for('static', filename='img/ceo/ic_marketing.svg') }}">
+                <span>Marketing</span>
+            </div>
+
+            <div class="nav_item" onclick="location.href='/acc/dashboard'">
+                <img src="{{ url_for('static', filename='img/ceo/ic_accounting&finance.svg') }}">
+                <span>Finance</span>
+            </div>
+
+            <div class="nav_item active" onclick="location.href='/settings'">
+                <img src="{{ url_for('static', filename='img/ic_settings.svg') }}">
+                <span>Settings</span>
+            </div>
+        </nav>
+
+        <div class="sidemenu_bottom">
+            <div class="nav_item" onclick="location.href='/signout'">
+                <img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}">
+                <span>Sign Out</span>
+            </div>
+            <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="footer-brand">
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main_content">
+
+        <!-- HEADER -->
+        <header class="header">
+            <h1 class="header_title">Chief Executive Officer</h1>
+
+            <div class="header_right_group">
+                <div class="search_box">
+                    <img src="{{ url_for('static', filename='img/ic_search.svg') }}">
+                    <input type="text" placeholder="Search here...">
+                </div>
+
+                <div class="user_profile">
+                    <span class="email_text"><strong>email: ceo_lemon.cos@bus.vn</strong></span>
+                    <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="user-logo">
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTENT -->
+        <section class="today-sales">
+
+            <div class="placeholder-box" style="padding:20px;">
+
+                <!-- TABLE -->
+                <div class="re-headers">
+                    <div>ID</div>
+                    <div>MANAGER</div>
+                    <div>DEPARTMENT</div>
+                    <div>EMAIL</div>
+                    <div>PASSWORD</div>
+                    <div>PHONE</div>
+                    <div>ROLE</div>
+                </div>
+
+                {% for acc in accounts %}
+                <div class="row">
+                    <div>{{ acc.id }}</div>
+                    <div>{{ acc.manager }}</div>
+                    <div>{{ acc.department }}</div>
+                    <div>{{ acc.email }}</div>
+                    <div>{{ acc.password }}</div>
+                    <div>{{ acc.phone }}</div>
+                    <div>{{ acc.role }}</div>
+                </div>
+                {% endfor %}
+
+                <!-- BUTTON -->
+                <div style="margin-top:20px; display:flex; gap:10px;">
+                    <button class="button" onclick="openCreate()">Create</button>
+                    <button class="button-3" onclick="openUpdate()">Update</button>
+                    <button class="button-5" onclick="openDelete()">Delete</button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+
+    <h3 id="modal-title">Account</h3>
+
+    <input id="m_email" placeholder="Email">
+    <input id="m_password" placeholder="Password">
+    <input id="m_manager" placeholder="Manager">
+    <input id="m_department" placeholder="Department">
+    <input id="m_phone" placeholder="Phone">
+
+    <div class="modal-actions">
+      <button onclick="submitAction()">Confirm</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== JS ===== -->
+<script>
+let currentAction = "";
+
+function openModal(title) {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("modal-title").innerText = title;
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function clearFields() {
+    ["m_email","m_password","m_manager","m_department","m_phone"]
+    .forEach(id => document.getElementById(id).value = "");
+}
+
+/* CREATE */
+function openCreate() {
+    currentAction = "create";
+    clearFields();
+    openModal("Create Account");
+}
+
+/* UPDATE */
+function openUpdate() {
+    const email = prompt("Enter email to update:");
+    if (!email) return;
+
+    fetch("/api/get_account?email=" + email)
+    .then(r => r.json())
+    .then(acc => {
+        currentAction = "update";
+        openModal("Update Account");
+
+        document.getElementById("m_email").value = acc.email || "";
+        document.getElementById("m_password").value = acc.password || "";
+        document.getElementById("m_manager").value = acc.manager || "";
+        document.getElementById("m_department").value = acc.department || "";
+        document.getElementById("m_phone").value = acc.phone || "";
+    });
+}
+
+/* DELETE */
+function openDelete() {
+    const email = prompt("Enter email to delete:");
+    if (!email) return;
+
+    fetch("/api/get_account?email=" + email)
+    .then(r => r.json())
+    .then(acc => {
+        currentAction = "delete";
+        openModal("Delete Account");
+
+        document.getElementById("m_email").value = acc.email || "";
+        document.getElementById("m_password").value = acc.password || "";
+        document.getElementById("m_manager").value = acc.manager || "";
+        document.getElementById("m_department").value = acc.department || "";
+        document.getElementById("m_phone").value = acc.phone || "";
+    });
+}
+
+/* SUBMIT */
+function submitAction() {
+
+    const data = {
+        email: document.getElementById("m_email").value,
+        password: document.getElementById("m_password").value,
+        manager: document.getElementById("m_manager").value,
+        department: document.getElementById("m_department").value,
+        phone: document.getElementById("m_phone").value
+    };
+
+    let url = "";
+
+    if (currentAction === "create") url = "/api/create_account";
+    if (currentAction === "update") url = "/api/update_account";
+    if (currentAction === "delete") url = "/api/delete_account";
+
+    fetch(url, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    })
+    .then(r => r.json())
+    .then(d => {
+        alert(d.message);
+        location.reload();
+    });
+}
+</script>
+
+</body>
+</html>
