@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="{{ url_for('static', filename='mar/mar_dashboard.css') }}">
+<title>Lemonade – Dashboard</title>
+</head>
+<script>
+async function exportFile(url) {
+    const res = await fetch(url);
+    const data = await res.json();
+    alert(data.message);
+}
+</script>
+<body>
+<div class="mkt-dashboard-chosen">
+<aside class="sidebar">
+  <div class="logo-top">
+    <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="lemon-icon-sidebar">
+    <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand-logo-top">
+  </div>
+  <nav class="menu">
+    <div class="menu-item active" onclick="location.href='/mkt/dashboard'"><img src="{{ url_for('static', filename='img/mar/ic_dashboard.svg') }}"><span>Dashboard</span></div>
+    <div class="menu-item" onclick="location.href='/mkt/segment'"><img src="{{ url_for('static', filename='img/mar/ic_seg_perform.svg') }}"><span>Segment Performance</span></div>
+    <div class="menu-item" onclick="location.href='/mkt/campaign'"><img src="{{ url_for('static', filename='img/mar/ic_cam_perform.svg') }}"><span>Campaign Performance</span></div>
+    <div class="menu-item" onclick="location.href='/mkt/market-share'"><img src="{{ url_for('static', filename='img/mar/ic_market_share_analysis.svg') }}"><span>Market Share Analysis</span></div>
+    <div class="menu-item" onclick="location.href='/mkt/upload'"><img src="{{ url_for('static', filename='img/mar/ic_upload_file.svg') }}"><span>Upload Data</span></div>
+  </nav>
+  <div class="sidebar-bottom">
+    <div class="menu-item sign-out" onclick="window.location.href='/signout'"><img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}"><span>Sign Out</span></div>
+    <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="footer-logo">
+  </div>
+</aside>
+<main class="content">
+  <header class="header">
+    <div class="header-left"><h1 class="nowrap">Marketing Department</h1></div>
+    <div class="header-tools">
+      <div class="user-info">
+        <span class="email-text"><strong>email: marketing@gmail.com</strong></span>
+        <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="lemon-header-icon">
+      </div>
+    </div>
+  </header>
+  <section class="summary">
+    <h2>Marketing Summary</h2>
+    <div class="card-grid">
+      <div class="card pink">
+        <div class="icon-bg"><img src="{{ url_for('static', filename='img/ic_dashboard_pink.svg') }}"></div>
+        <div class="val" id="kpi-revenue">--</div>
+        <div class="label">Today's Marketing</div>
+        <div class="trend" id="kpi-revenue-change">--</div>
+      </div>
+      <div class="card green">
+        <div class="icon-bg"><img src="{{ url_for('static', filename='img/ic_dashboard_green.svg') }}"></div>
+        <div class="val" id="kpi-clicks">--</div>
+        <div class="label">Total Clicks</div>
+        <div class="trend" id="kpi-clicks-change">--</div>
+      </div>
+      <div class="card purple">
+        <div class="icon-bg"><img src="{{ url_for('static', filename='img/ic_dashboard_purple.svg') }}"></div>
+        <div class="val" id="kpi-conv">--</div>
+        <div class="label">Conversion Rate</div>
+        <div class="trend" id="kpi-conv-change">--</div>
+      </div>
+    </div>
+  </section>
+  <section class="campaigns">
+    <div class="table-header">
+      <h2>Recent Campaigns</h2>
+      <button class="export-btn" onclick="exportFile('/api/dashboard/export')">
+        <img src="{{ url_for('static', filename='img/ic_export.svg') }}"> Export
+      </button>
+    </div>
+    <table class="table">
+      <thead><tr><th>Campaign Name</th><th>Status</th><th>Budget</th><th>Progress</th></tr></thead>
+      <tbody id="campaignTableBody"><tr><td colspan="4" style="text-align:center;color:#aaa;padding:20px">Đang tải...</td></tr></tbody>
+    </table>
+    <div class="table-footer">
+      {% if is_admin %}
+      <div class="back-btn" onclick="window.location.href='/dashboard'">
+        <img src="{{ url_for('static', filename='img/ic_back.svg') }}"><span>Back</span>
+      </div>
+      {% else %}
+      <div class="back-btn" style="opacity: 0.4; cursor: not-allowed;" title="Chỉ CEO mới có quyền quay lại trang tổng quan">
+        <img src="{{ url_for('static', filename='img/ic_back.svg') }}"><span>Back</span>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+</main>
+</div>
+<script>
+const ST = {Active:{bg:'#DCFCE7',color:'#00AC4F',bar:'#00AC4F'},Completed:{bg:'#FFF4DE',color:'#FF947A',bar:'#FF947A'},Pending:{bg:'#FFE2E5',color:'#FA5A7D',bar:'#FA5A7D'}};
+async function loadSummary(){
+  const d=(await (await fetch('/api/dashboard/summary')).json());
+  document.getElementById('kpi-revenue').textContent=d.today_revenue.value;
+  document.getElementById('kpi-revenue-change').textContent=d.today_revenue.change+' from yesterday';
+  document.getElementById('kpi-clicks').textContent=d.total_clicks.value;
+  document.getElementById('kpi-clicks-change').textContent=d.total_clicks.change+' from yesterday';
+  document.getElementById('kpi-conv').textContent=d.conversion_rate.value;
+  document.getElementById('kpi-conv-change').textContent=d.conversion_rate.change+' from yesterday';
+}
+async function loadCampaigns(search=''){
+  const rows=await(await fetch('/api/dashboard/campaigns?search='+encodeURIComponent(search))).json();
+  const tbody=document.getElementById('campaignTableBody');
+  if(!rows.length){tbody.innerHTML='<tr><td colspan="4" style="text-align:center;color:#aaa;padding:20px">Không tìm thấy</td></tr>';return;}
+  tbody.innerHTML=rows.map(r=>{const s=ST[r.status]||{bg:'#eee',color:'#333',bar:'#ccc'};return`<tr>
+    <td>${r.name}</td>
+    <td><span style="background:${s.bg};color:${s.color};padding:4px 12px;border-radius:8px;font-size:11px;font-weight:700">${r.status}</span></td>
+    <td>${r.budget}</td>
+    <td><div class="p-bar"><div style="width:${r.progress}%;background:${s.bar};height:100%;border-radius:3px"></div></div></td>
+  </tr>`;}).join('');
+}
+let t; function searchCampaigns(v){clearTimeout(t);t=setTimeout(()=>loadCampaigns(v),300);}
+loadSummary(); loadCampaigns();
+</script>
+</body></html>

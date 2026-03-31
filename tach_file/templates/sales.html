@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lemonade - Sales Report Final Fixed</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='sales_sales_report.css') }}" />
+</head>
+<body>
+    <div class="sales-report-chosen">
+        <aside class="menu-sidebar">
+            <div class="logo-top">
+                <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="sidebar-lemon">
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand-name-img">
+            </div>
+
+            <nav class="sidemenu">
+                <div class="nav-item active" onclick="location.href='/sales'">
+                    <img src="{{ url_for('static', filename='img/ceo/ic_sales_report.svg') }}"><span>Sales Report</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="nav-item-logout" onclick="location.href='/logout'">
+                    <img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}"><span>Sign Out</span>
+                </div>
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="lemonade-logo-bottom">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header-fixed">
+                <h1 class="header-title">Sales Report</h1>
+
+                <div class="header-right">
+                    <form class="search-box" method="GET" action="/sales">
+                        <img src="{{ url_for('static', filename='img/ic_search.svg') }}" width="16">
+                        <input type="text" name="q" placeholder="Search here..." value="{{ search_query }}">
+                        <button type="submit" style="display: none;"></button>
+                    </form>
+
+                    <div class="profile-right">
+                        <span class="email-bold">email: sales@gmail.com</span>
+                        <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="user-logo">
+                    </div>
+                </div>
+            </header>
+
+            <div class="scrollable-content">
+                <div class="filter_row">
+                    <div class="pill">This Year</div>
+                    <div class="pill">All Products</div>
+                </div>
+
+                <div class="kpi_navbar">
+                    <div class="kpi_item pink"><span class="k_label">Units Sold</span><span class="k_val">{{d.units}}</span></div>
+                    <div class="kpi_item green"><span class="k_label">Total Revenue</span><span class="k_val">{{d.revenue}}</span></div>
+                    <div class="kpi_item yellow"><span class="k_label">Top Product</span><span class="k_val">{{d.top_prod}}</span></div>
+                    <div class="kpi_item purple"><span class="k_label">KPI Achievement</span><span class="k_val">{{d.kpi}}</span></div>
+                </div>
+
+                <div class="dashboard_grid">
+                    <div class="chart_box">
+                        <h3 class="box_title">Sales Trend</h3>
+                        <div class="chart_container">
+                            {{ d.trend_chart | safe }}
+                        </div>
+                    </div>
+                    <div class="chart_box">
+                        <h3 class="box_title">Customer Analytics</h3>
+                        <div class="stat_row">
+                            <span>VIP Customers</span><strong>{{ d.customer_stats.vip}}%</strong>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: {{ d.customer_stats.vip }}%;"></div>
+                            </div>
+                        </div>
+                        <div class="stat_row">
+                            <span>Returning Customers</span><strong>{{ d.customer_stats.returning}}%</strong>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: {{ d.customer_stats.returning }}%;"></div>
+                            </div>
+                        </div>
+                        <div class="stat_row">
+                            <span>New Customers</span><strong>{{ d.customer_stats.new}}%</strong>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: {{ d.customer_stats.new }}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart_box">
+                        <h3 class="box_title">Top 5 Cosmetic Products by Units Sold</h3>
+                        <div class="chart_container">
+                            {{ top5 | safe }}
+                        </div>
+                    </div>
+                    <div class="chart_box">
+                        <h3 class="box_title">Slow Moving Products</h3>
+                        {% if d.slow_prods|length == 0 %}
+                            <div style="text-align: center; color: #888; margin-top: 30px; font-style: italic;">
+                                No products matching the search were found.
+                            </div>
+                        {% else %}
+                            {% for item in d.slow_prods %}
+                            <div class="slow_row">
+                                <span>{{ item.product_name }}</span>
+                                <span class="tag {{ item.status }}">
+                                    {{ item.status | capitalize }}
+                                </span>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer-fixed">
+                {% if is_admin %}
+                <button class="btn-back" onclick="window.location.href='/dashboard'">
+                    <img src="{{ url_for('static', filename='img/ic_back.svg') }}" width="20"><span>Back</span>
+                </button>
+                {% else %}
+                <button class="btn-back" style="opacity: 0.4; cursor: not-allowed;" title="Chỉ CEO mới có quyền quay lại trang tổng quan">
+                    <img src="{{ url_for('static', filename='img/ic_back.svg') }}" width="20"><span>Back</span>
+                </button>
+                {% endif %}
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

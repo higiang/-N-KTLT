@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supplier List - Lemonade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='inv/inv_supplier.css') }}" />
+</head>
+<body>
+    <div class="inv-app-container">
+        <aside class="menu-sidebar">
+            <div class="logo-top">
+                <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="sidebar-lemon">
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand-name-img" alt="LEMONADE">
+            </div>
+
+            <nav class="sidemenu">
+                <a href="/inv/dashboard" class="nav-item">
+                    <img src="{{ url_for('static', filename='img/inventory/ic_dashboard.svg') }}"> Dashboard
+                </a>
+                <a href="/inv/products" class="nav-item">
+                    <img src="{{ url_for('static', filename='img/inventory/ic_product_list.svg') }}"> Product List
+                </a>
+                <a href="/inv/suppliers" class="nav-item active">
+                    <img src="{{ url_for('static', filename='img/inventory/ic_supplier.svg') }}"> Supplier
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="/login" class="nav-item-logout">
+                    <img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}"> Sign Out
+                </a>
+                <img class="lemonade-logo-bottom" src="{{ url_for('static', filename='img/lemonade_logo.png') }}">
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="header-fixed">
+                <h1 class="header-title">Inventory Manager</h1>
+                <div class="header-right">
+                    <div class="search-box">
+                        <img src="{{ url_for('static', filename='img/ic_search.svg') }}" width="16">
+                        <input type="text" id="searchInput" onkeyup="filterSuppliers()" placeholder="Search here...">
+                    </div>
+                    <div class="profile-right">
+                        <span class="email-bold">email: inventory@gmail.com</span>
+                        <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="user-logo">
+                    </div>
+                </div>
+            </header>
+
+            <main class="scrollable-content">
+
+                <div class="table-container">
+                    <h2 class="table-title">Supplier List</h2>
+                    <div class="table-header">
+                        <div class="th-col" style="flex: 1.2; padding-left: 30px;">Company Name</div>
+                        <div class="th-col" style="flex: 1;">Phone</div>
+                        <div class="th-col" style="flex: 1;">Category</div>
+                        <div class="th-col" style="flex: 0.8;">Location</div>
+                    </div>
+
+                    <div class="table-body" id="supplierContainer">
+                        {% for s in sups %}
+                        <div class="searchable-sup table-row">
+                            <div class="td-col company-col" style="flex: 1.2; padding-left: 30px;">{{ s.CompanyName }}</div>
+                            <div class="td-col phone-col" style="flex: 1;">{{ s.Phone }}</div>
+                            <div class="td-col category-col" style="flex: 1;">{{ s.Category }}</div>
+                            <div class="td-col location-col" style="flex: 0.8;">{{ s.Location }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </main>
+
+            <footer class="footer-fixed">
+
+                <div id="paginationControls" class="pagination-controls"></div>
+
+                {% if is_admin %}
+                <a href="/dashboard" class="btn-back">
+                    <img src="{{ url_for('static', filename='img/ic_back.svg') }}" width="24">
+                    <span>Back</span>
+                </a>
+                {% else %}
+                <a class="btn-back" style="opacity: 0.4; cursor: not-allowed;" title="Chỉ CEO mới có quyền quay lại trang tổng quan">
+                    <img src="{{ url_for('static', filename='img/ic_back.svg') }}" width="24">
+                    <span>Back</span>
+                </a>
+                {% endif %}
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const rowsPerPage = 15;
+        let allRows = Array.from(document.querySelectorAll('.searchable-sup'));
+        let filteredRows = allRows;
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredRows.length / rowsPerPage) || 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            allRows.forEach(row => row.style.display = "none");
+
+            filteredRows.forEach((row, index) => {
+                if (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) {
+                    row.style.display = "flex";
+                }
+            });
+
+            // Gán class CSS cho các nút số trang để đồng bộ màu sắc
+            let html = `<span onclick="changePage(${currentPage - 1})" class="page-btn" style="${currentPage === 1 ? 'opacity:0.4;pointer-events:none;' : ''}"> < Prev </span>`;
+
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+            if (endPage - startPage < 4) { startPage = Math.max(1, endPage - 4); }
+
+            for (let i = startPage; i <= endPage; i++) {
+                let activeClass = (i === currentPage) ? 'active-page' : '';
+                html += `<span onclick="changePage(${i})" class="page-num ${activeClass}"> ${i} </span>`;
+            }
+
+            html += `<span onclick="changePage(${currentPage + 1})" class="page-btn" style="${currentPage === totalPages ? 'opacity:0.4;pointer-events:none;' : ''}"> Next > </span>`;
+
+            document.getElementById('paginationControls').innerHTML = html;
+        }
+
+        function changePage(page) {
+            const totalPages = Math.ceil(filteredRows.length / rowsPerPage) || 1;
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                renderPagination();
+                document.getElementById('supplierContainer').scrollTop = 0;
+            }
+        }
+
+        window.onload = renderPagination;
+
+        function filterSuppliers() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            if (input === "") {
+                filteredRows = allRows;
+            } else {
+                filteredRows = allRows.filter(row => row.innerText.toLowerCase().includes(input));
+            }
+            currentPage = 1;
+            renderPagination();
+        }
+    </script>
+</body>
+</html>

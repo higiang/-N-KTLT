@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lemonade - CEO Reports</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ceo/ceo_reports.css') }}" />
+</head>
+<body>
+    <div class="ceo-app-container">
+        <aside class="menu-sidebar">
+            <div class="logo-top">
+                <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="sidebar-lemon">
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand-name-img">
+            </div>
+
+            <nav class="sidemenu">
+                <div class="nav-item" onclick="location.href='/dashboard'">
+                    <img src="{{ url_for('static', filename='img/ic_dashboard.svg') }}"><span>Dashboard</span>
+                </div>
+                <div class="nav-item active" onclick="location.href='/reports'">
+                    <img src="{{ url_for('static', filename='img/ic_reports.svg') }}"><span>Reports</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/inv/dashboard'">
+                    <img src="{{ url_for('static', filename='img/ic_inventory.svg') }}"><span>Inventory</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/sales'">
+                    <img src="{{ url_for('static', filename='img/ic_sales_report.svg') }}"><span>Sales Report</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/mkt/dashboard'">
+                    <img src="{{ url_for('static', filename='img/ic_marketing.svg') }}"><span>Marketing</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/acc/dashboard'">
+                    <img src="{{ url_for('static', filename='img/ic_accounting&finance.svg') }}"><span>Finance</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/settings'">
+                    <img src="{{ url_for('static', filename='img/ic_settings.svg') }}"><span>Settings</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="nav-item-logout" onclick="location.href='/signout'">
+                    <img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}"><span>Sign Out</span>
+                </div>
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="lemonade-logo-bottom">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header-fixed">
+                <h1 class="header-title">Chief Executive Officer</h1>
+                <div class="header-right">
+                    <div class="search-box">
+                        <img src="{{ url_for('static', filename='img/ic_search.svg') }}" width="16">
+                        <input type="text" placeholder="Search here...">
+                    </div>
+                    <div class="profile-right">
+                        <span class="email-bold">email: ceo@gmail.com</span>
+                        <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="user-logo">
+                    </div>
+                </div>
+            </header>
+
+            <div class="scrollable-content">
+                <section class="reports-grid">
+                    <div class="report-card">
+                        <div class="card-info">
+                            <h3>Marketing Analysis</h3>
+                            <p>Chi tiết chiến dịch và chi phí Marketing tháng này. Giúp CEO nắm bắt độ phủ thương hiệu.</p>
+                        </div>
+                        <button class="btn-read" onclick="location.href='/mkt/dashboard'">Read</button>
+                    </div>
+                    <div class="report-card">
+                        <div class="card-info">
+                            <h3>Sales Performance</h3>
+                            <p>Báo cáo doanh số chi tiết theo từng khu vực và từng dòng sản phẩm Lemonade.</p>
+                        </div>
+                        <button class="btn-read" onclick="location.href='/sales'">Read</button>
+                    </div>
+                    <div class="report-card">
+                        <div class="card-info">
+                            <h3>Inventory Status</h3>
+                            <p>Tình trạng tồn kho hiện tại, dự báo thời gian nhập hàng kế tiếp để đảm bảo cung ứng.</p>
+                        </div>
+                        <button class="btn-read" onclick="location.href='/inv/dashboard'">Read</button>
+                    </div>
+                    <div class="report-card">
+                        <div class="card-info">
+                            <h3>Accounting & Finance</h3>
+                            <p>Báo cáo tài chính tháng, lợi nhuận ròng và các khoản chi phí vận hành cố định.</p>
+                        </div>
+                        <button class="btn-read" onclick="location.href='/acc/dashboard'">Read</button>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="footer-fixed">
+                <button class="btn-back" onclick="location.href='/dashboard'">
+                    <img src="{{ url_for('static', filename='img/ic_back.svg') }}" width="20">
+                    <span>Back</span>
+                </button>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
