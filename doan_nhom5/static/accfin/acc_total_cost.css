@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --side-bg: #EDF2F9;
+    --primary: #5D5FEF;
+    --dark-blue: #151D48;
+}
+
+/* RESET & GLOBAL */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif !important; -webkit-font-smoothing: antialiased; }
+body { width: 100vw; height: 100vh; background: #FAFBFC; overflow: hidden; }
+
+.acc-app-container { display: flex; width: 100vw; height: 100vh; }
+
+/* SIDEBAR */
+.menu-sidebar { width: 280px; height: 100vh; background: var(--side-bg); display: flex; flex-direction: column; padding: 30px 25px; border-right: 1px solid #E5E7EB; flex-shrink: 0; position: sticky; top: 0; }
+.logo-top { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+.sidebar-lemon { height: 40px !important; width: auto !important; object-fit: contain; }
+.brand-name-img { height: 30px !important; width: auto !important; object-fit: contain; }
+
+.sidemenu { flex: 1; display: flex; flex-direction: column; gap: 0; }
+.nav-item { display: flex; align-items: center; gap: 15px !important; padding: 12px 15px !important; color: #737791; border-radius: 12px; cursor: pointer; font-size: 14px !important; font-weight: 500 !important; margin-bottom: 5px; text-decoration: none; }
+.nav-item svg { width: 24px !important; height: 24px !important; object-fit: contain !important; margin-right: 0 !important; }
+.nav-item.active { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(93, 95, 239, 0.2); }
+
+/* FOOTER SIDEBAR */
+.sidebar-footer { margin-top: auto; padding-top: 20px; border-top: none; width: 100%; }
+.nav-item-logout { display: flex; align-items: center; gap: 15px !important; padding: 12px 15px !important; color: #737791; border-radius: 12px; margin-bottom: 5px; font-weight: 500 !important; cursor: pointer; font-size: 14px !important; width: 100%; text-decoration: none; }
+.nav-item-logout svg { width: 24px !important; height: 24px !important; object-fit: contain !important; }
+.lemonade-logo-bottom { width: 200px !important; height: auto; opacity: 0.7; margin-top: 30px; display: block; margin-left: auto; margin-right: auto; }
+
+/* HEADER TRẮNG  */
+.main-content { flex: 1; display: flex; flex-direction: column; padding: 0 !important; overflow: hidden !important; height: 100vh !important; width: calc(100vw - 280px);}
+
+.header-fixed { background: #FFFFFF !important; padding: 20px 40px !important; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #F1F1F1 !important; z-index: 100; flex-shrink: 0; margin-bottom: 0 !important; height: auto; width: 100% !important; }
+.header-title { font-size: 24px !important; font-weight: 700 !important; color: var(--dark-blue) !important; margin: 0; }
+
+.header-right { display: flex; align-items: center; gap: 25px !important; margin-left: auto; }
+.search-box { background: #F9FAFB !important; border-radius: 12px !important; padding: 8px 15px !important; display: flex; align-items: center; gap: 10px; width: 240px !important; border: 1px solid #F0F0F0 !important; }
+.search-box input { border: none !important; background: transparent !important; outline: none !important; width: 100% !important; font-size: 13px !important; color: var(--dark-blue); }
+
+.profile-right { display: flex; align-items: center; gap: 10px; min-width: unset !important; }
+.email-bold { font-weight: 800 !important; font-size: 12px !important; color: #000000 !important; text-decoration: none !important; }
+.user-logo { height: 26px !important; width: auto !important; object-fit: contain !important; }
+
+/* KHU VỰC CUỘN NỘI DUNG */
+.scrollable-content { flex: 1; padding: 30px 40px !important; overflow-y: auto; display: flex; flex-direction: column; }
+
+/* TOP GRID LỚN (Summary & Chart) */
+.top-grid { display: grid; grid-template-columns: 0.7fr 1.5fr; gap: 20px; flex-shrink: 0; min-height: 230px; margin-bottom: 25px; }
+
+.summary-card { background: #FFF4DE; border-radius: 16px; padding: 25px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+.summary-card h3 { font-size: 14px; color: var(--dark-blue); font-weight: 800; margin: 0 0 5px 0; }
+.summary-card h2 { color: #FF947A; font-size: 34px; font-weight: 900; margin: 10px 0; }
+.summary-card p { color: #737791; font-size: 13px; font-weight: 600; margin: 0; }
+
+.chart-card { background: white; border-radius: 16px; padding: 20px 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; min-width: 0; overflow: visible; border: 1.5px solid #F1F1F1;}
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px solid #F1F5F9; padding-bottom: 10px; }
+.chart-header h3 { font-size: 16px; color: var(--dark-blue); font-weight: 800; margin: 0; }
+
+.plotly-wrap { width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+.btn-export-sm { padding: 6px 12px; border: 1px solid #E2E8F0; border-radius: 8px; background: white; cursor: pointer; font-weight: 700; font-size: 12px; display: flex; align-items: center; gap: 6px; color: var(--dark-blue); text-decoration: none; transition: 0.2s; }
+/* =========================================
+   HIỆU ỨNG NHÚN (BOUNCE IN UP) CHO TOÀN HỆ THỐNG
+========================================= */
+@keyframes bounceInUp {
+    0% { opacity: 0; transform: translateY(40px); }
+    60% { opacity: 1; transform: translateY(-10px); }
+    80% { transform: translateY(5px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 1. Áp dụng cho mọi khung nội dung trên toàn hệ thống */
+.kpi-card, .chart-card, .chart-container, .table-container,
+.report-card, .upload-card, .box-card, .bottom-row-chart,
+.summary-card, .table-box, .chart-box {
+    animation: bounceInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0; /* Ẩn đi trước khi nhún lên */
+}
+
+/* 2. Hiệu ứng xuất hiện lần lượt (Cascade) cho các thẻ nhỏ ở trên */
+.kpi-grid .kpi-card:nth-child(1), .reports-grid .report-card:nth-child(1) { animation-delay: 0.1s; }
+.kpi-grid .kpi-card:nth-child(2), .reports-grid .report-card:nth-child(2) { animation-delay: 0.2s; }
+.kpi-grid .kpi-card:nth-child(3), .reports-grid .report-card:nth-child(3) { animation-delay: 0.3s; }
+.kpi-grid .kpi-card:nth-child(4), .reports-grid .report-card:nth-child(4) { animation-delay: 0.4s; }
+
+.top-grid .summary-card { animation-delay: 0.1s; }
+
+/* 3. Hiệu ứng xuất hiện cho các khung lớn ở dưới (Table, Chart đơn) */
+.chart-container, .table-container, .box-card, .bottom-row-chart, .upload-card, .table-box {
+    animation-delay: 0.4s;
+}
+
+/* 4. Hiệu ứng xuất hiện lần lượt cho các lưới chứa nhiều Chart (như Sales, CEO, Acc) */
+.sales-grid .chart-card:nth-child(1), .chart-calendar-grid .chart-box:nth-child(1), .bottom-grid .chart-box:nth-child(1) { animation-delay: 0.3s; }
+.sales-grid .chart-card:nth-child(2), .chart-calendar-grid .chart-box:nth-child(2), .bottom-grid .chart-box:nth-child(2) { animation-delay: 0.4s; }
+.sales-grid .chart-card:nth-child(3), .chart-calendar-grid .chart-box:nth-child(3), .bottom-grid .chart-box:nth-child(3) { animation-delay: 0.5s; }
+.sales-grid .chart-card:nth-child(4), .chart-calendar-grid .chart-box:nth-child(4) { animation-delay: 0.6s; }
+.forecast-box { animation-delay: 0.7s; }
+.btn-export-sm:hover { background: #F8FAFC; }
+
+/* BOTTOM TABLE */
+.table-container { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; flex: 1; border: 1.5px solid #F1F1F1; min-height: 300px; }
+.tbl-header { display: flex; padding: 12px 20px; background: #F8FAFC; border-bottom: 1px solid #E5E7EB; border-top: 1px solid #E5E7EB; font-weight: 700; font-size: 13px; color: #425166; margin-bottom: 10px; }
+
+.tbl-body { flex: 1; overflow-y: auto; }
+.tbl-row { display: flex; padding: 12px 20px; border-bottom: 1px solid #F1F1F1; align-items: center; }
+
+.tbl-total { display: flex; padding: 15px 20px; background: #FFF4DE; border-radius: 12px; margin-top: 10px; border: 1.5px dashed #FF947A; align-items: center; }
+
+/* Table Columns */
+.col-1 { flex: 1; font-weight: 600; color: #737791; font-size: 13px; }
+.col-2 { flex: 2; font-weight: 700; color: var(--dark-blue); font-size: 14px; }
+.col-3 { flex: 1.5; font-weight: 600; color: #737791; font-size: 13px; }
+.col-4 { flex: 1; text-align: right; font-weight: 800; color: var(--dark-blue); font-size: 15px; }
+.tbl-total .col-4 { color: #FF3B30; font-size: 18px; }
+
+/* FOOTER DƯỚI CÙNG CHỨA NÚT BACK */
+.footer-fixed { height: 60px; border-top: 1px solid #F1F1F1; padding: 0 40px; display: flex; justify-content: flex-end; align-items: center; flex-shrink: 0; background: #FAFBFC; }
+.btn-back { display: flex; align-items: center; gap: 8px; border: none; background: transparent; color: #737791; font-weight: 600; cursor: pointer; text-decoration: none; font-size: 14px; }
+
+.chart-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}

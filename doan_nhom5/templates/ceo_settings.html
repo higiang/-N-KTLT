@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lemonade - CEO Settings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ceo/ceo_settings.css') }}">
+</head>
+
+<body>
+<div class="ceo-app-container">
+    <aside class="menu-sidebar">
+        <div class="logo-top">
+            <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="sidebar-lemon">
+            <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand-name-img">
+        </div>
+
+        <nav class="sidemenu">
+            {% if not is_new_ceo %}
+            <div class="nav-item" onclick="location.href='/dashboard'">
+                <img src="{{ url_for('static', filename='img/ic_dashboard.svg') }}"><span>Dashboard</span>
+            </div>
+            <div class="nav-item" onclick="location.href='/reports'">
+                <img src="{{ url_for('static', filename='img/ic_reports.svg') }}"><span>Reports</span>
+            </div>
+            <div class="nav-item" onclick="location.href='/inv/dashboard'">
+                <img src="{{ url_for('static', filename='img/ic_inventory.svg') }}"><span>Inventory</span>
+            </div>
+            <div class="nav-item" onclick="location.href='/sales'">
+                <img src="{{ url_for('static', filename='img/ic_sales_report.svg') }}"><span>Sales Report</span>
+            </div>
+            <div class="nav-item" onclick="location.href='/mkt/dashboard'">
+                <img src="{{ url_for('static', filename='img/ic_marketing.svg') }}"><span>Marketing</span>
+            </div>
+            <div class="nav-item" onclick="location.href='/acc/dashboard'">
+                <img src="{{ url_for('static', filename='img/ic_accounting&finance.svg') }}"><span>Finance</span>
+            </div>
+
+            {% else %}
+            {% if all_depts_str.strip() != '' %}
+            <div class="nav-item" style="cursor: default;">
+                <img src="{{ url_for('static', filename='img/ic_dashboard.svg') }}"><span>Dashboard</span>
+            </div>
+            <div class="nav-item" style="cursor: default;">
+                <img src="{{ url_for('static', filename='img/ic_reports.svg') }}"><span>Reports</span>
+            </div>
+            {% endif %}
+
+            {% if 'inventory' in all_depts_str or 'inven' in all_depts_str %}
+            <div class="nav-item" style="cursor: default;">
+                <img src="{{ url_for('static', filename='img/ic_inventory.svg') }}"><span>Inventory</span>
+            </div>
+            {% endif %}
+
+            {% if 'sales' in all_depts_str or 'sale' in all_depts_str %}
+            <div class="nav-item" style="cursor: default;">
+                <img src="{{ url_for('static', filename='img/ic_sales_report.svg') }}"><span>Sales Report</span>
+            </div>
+            {% endif %}
+
+            {% if 'marketing' in all_depts_str or 'mkt' in all_depts_str %}
+            <div class="nav-item" style="cursor: default;">
+                <img src="{{ url_for('static', filename='img/ic_marketing.svg') }}"><span>Marketing</span>
+            </div>
+            {% endif %}
+
+            {% if 'accounting' in all_depts_str or 'finance' in all_depts_str or 'acc' in all_depts_str %}
+            <div class="nav-item" style="cursor: default;">
+                <img src="{{ url_for('static', filename='img/ic_accounting&finance.svg') }}"><span>Finance</span>
+            </div>
+            {% endif %}
+
+            {% endif %}
+
+            <div class="nav-item active" onclick="location.href='/settings'">
+                <img src="{{ url_for('static', filename='img/ic_settings.svg') }}"><span>Settings</span>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="nav-item-logout" onclick="location.href='/signout'">
+                <img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}"><span>Sign Out</span>
+            </div>
+            <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="lemonade-logo-bottom">
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="header-fixed">
+            <h1 class="header-title">Chief Executive Officer</h1>
+            <div class="header-right">
+                <div class="search-box">
+                    <img src="{{ url_for('static', filename='img/ic_search.svg') }}" width="16">
+                    <input type="text" placeholder="Search here...">
+                </div>
+                <div class="user-profile">
+                    <span class="email-bold">email: ceo@gmail.com</span>
+                    <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="user-logo">
+                </div>
+            </div>
+        </header>
+
+        <div class="scrollable-content">
+            <div class="table-container">
+                <div class="table-header-custom">
+                    <h2>Account Management</h2>
+                    <div class="action-buttons">
+                        <button class="btn-create" onclick="openCreate()">Create new</button>
+                        <button class="btn-update" onclick="openUpdate()">Update</button>
+                        <button class="btn-delete" onclick="openDelete()">Delete</button>
+                    </div>
+                </div>
+
+                <div class="table-box">
+                    <div class="tbl-head">
+                        <div>ID</div>
+                        <div>MANAGER</div>
+                        <div>DEPARTMENT</div>
+                        <div>EMAIL</div>
+                        <div>PASSWORD</div>
+                        <div>PHONE</div>
+                        <div>ROLE</div>
+                    </div>
+                    <div class="tbl-body">
+                        {% for acc in accounts %}
+                        <div class="tbl-row">
+                            <div>{{ loop.index }}</div>
+                            <div>{{ acc.manager }}</div>
+                            <div>{{ acc.department }}</div>
+                            <div>{{ acc.email }}</div>
+                            <div>********</div>
+                            <div>{{ acc.phone }}</div>
+                            <div>{{ acc.role }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div id="modal" class="modal-overlay">
+  <div class="modal-box">
+    <h3 id="modal-title">Account Form</h3>
+    <div class="input-group">
+        <label>Email</label>
+        <input id="m_email" placeholder="Nhập Email">
+    </div>
+    <div class="input-group">
+        <label>Password</label>
+        <input id="m_password" type="password" placeholder="Nhập Password">
+    </div>
+    <div class="input-group">
+        <label>Manager</label>
+        <input id="m_manager" placeholder="Tên quản lý">
+    </div>
+    <div class="input-group">
+        <label>Department</label>
+        <input id="m_department" placeholder="Phòng ban">
+    </div>
+    <div class="input-group">
+        <label>Phone</label>
+        <input id="m_phone" placeholder="Số điện thoại">
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-confirm" onclick="submitAction()">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentAction = "";
+
+function openModal(title) {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("modal-title").innerText = title;
+}
+function closeModal() { document.getElementById("modal").style.display = "none"; }
+function clearFields() {
+    ["m_email","m_password","m_manager","m_department","m_phone"].forEach(id => document.getElementById(id).value = "");
+}
+
+function openCreate() { currentAction = "create"; clearFields(); openModal("Create Account"); }
+
+function openUpdate() {
+    const email = prompt("Enter email to update:");
+    if (!email) return;
+    fetch("/api/get_account?email=" + email).then(r => r.json()).then(acc => {
+        currentAction = "update"; openModal("Update Account");
+        document.getElementById("m_email").value = acc.email || "";
+        document.getElementById("m_password").value = acc.password || "";
+        document.getElementById("m_manager").value = acc.manager || "";
+        document.getElementById("m_department").value = acc.department || "";
+        document.getElementById("m_phone").value = acc.phone || "";
+    });
+}
+
+function openDelete() {
+    const email = prompt("Enter email to delete:");
+    if (!email) return;
+    fetch("/api/get_account?email=" + email).then(r => r.json()).then(acc => {
+        currentAction = "delete"; openModal("Delete Account");
+        document.getElementById("m_email").value = acc.email || "";
+        document.getElementById("m_password").value = acc.password || "";
+        document.getElementById("m_manager").value = acc.manager || "";
+        document.getElementById("m_department").value = acc.department || "";
+        document.getElementById("m_phone").value = acc.phone || "";
+    });
+}
+
+function submitAction() {
+    const data = {
+        email: document.getElementById("m_email").value, password: document.getElementById("m_password").value,
+        manager: document.getElementById("m_manager").value, department: document.getElementById("m_department").value,
+        phone: document.getElementById("m_phone").value
+    };
+    let url = "";
+    if (currentAction === "create") url = "/api/create_account";
+    if (currentAction === "update") url = "/api/update_account";
+    if (currentAction === "delete") url = "/api/delete_account";
+
+    fetch(url, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(data) })
+    .then(r => r.json()).then(d => { alert(d.message); location.reload(); });
+}
+</script>
+</body>
+</html>

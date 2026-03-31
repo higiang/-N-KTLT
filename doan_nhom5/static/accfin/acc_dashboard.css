@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --side-bg: #EDF2F9;
+    --primary: #5D5FEF;
+    --dark-blue: #151D48;
+}
+
+/* RESET & GLOBAL */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif !important; -webkit-font-smoothing: antialiased; }
+body { width: 100vw; height: 100vh; background: #FAFBFC; overflow: hidden; }
+
+.acc-app-container { display: flex; width: 100vw; height: 100vh; }
+
+/* SIDEBAR */
+.menu-sidebar { width: 280px; height: 100vh; background: var(--side-bg); display: flex; flex-direction: column; padding: 30px 25px; border-right: 1px solid #E5E7EB; flex-shrink: 0; position: sticky; top: 0; }
+.logo-top { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+.sidebar-lemon { height: 40px !important; width: auto !important; object-fit: contain; }
+.brand-name-img { height: 30px !important; width: auto !important; object-fit: contain; }
+
+.sidemenu { flex: 1; display: flex; flex-direction: column; gap: 0; }
+.nav-item { display: flex; align-items: center; gap: 15px !important; padding: 12px 15px !important; color: #737791; border-radius: 12px; cursor: pointer; font-size: 14px !important; font-weight: 500 !important; margin-bottom: 5px; text-decoration: none; }
+.nav-item svg { width: 24px !important; height: 24px !important; object-fit: contain !important; margin-right: 0 !important; }
+.nav-item.active { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(93, 95, 239, 0.2); }
+
+/* FOOTER SIDEBAR */
+.sidebar-footer { margin-top: auto; padding-top: 20px; border-top: none; width: 100%; }
+.nav-item-logout { display: flex; align-items: center; gap: 15px !important; padding: 12px 15px !important; color: #737791; border-radius: 12px; margin-bottom: 5px; font-weight: 500 !important; cursor: pointer; font-size: 14px !important; width: 100%; text-decoration: none; }
+.nav-item-logout svg { width: 24px !important; height: 24px !important; object-fit: contain !important; }
+.lemonade-logo-bottom { width: 200px !important; height: auto; opacity: 0.7; margin-top: 30px; display: block; margin-left: auto; margin-right: auto; }
+
+/* HEADER TRẮNG VẮT NGANG */
+.main-content { flex: 1; display: flex; flex-direction: column; padding: 0 !important; overflow: hidden !important; height: 100vh !important; }
+.main-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    max-width: calc(100vw - 260px);
+}
+.header-fixed { background: #FFFFFF !important; padding: 20px 40px !important; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #F1F1F1 !important; z-index: 100; flex-shrink: 0; margin-bottom: 0 !important; height: auto; width: 100% !important; }
+.header-title { font-size: 24px !important; font-weight: 700 !important; color: var(--dark-blue) !important; margin: 0; }
+
+.header-right { display: flex; align-items: center; gap: 25px !important; margin-left: auto; }
+.search-box { background: #F9FAFB !important; border-radius: 12px !important; padding: 8px 15px !important; display: flex; align-items: center; gap: 10px; width: 240px !important; border: 1px solid #F0F0F0 !important; }
+.search-box input { border: none !important; background: transparent !important; outline: none !important; width: 100% !important; font-size: 13px !important; color: var(--dark-blue); }
+
+.profile-right { display: flex; align-items: center; gap: 10px; min-width: unset !important; }
+.email-bold { font-weight: 800 !important; font-size: 12px !important; color: #000000 !important; text-decoration: none !important; }
+.user-logo { height: 26px !important; width: auto !important; object-fit: contain !important; }
+
+/* KHU VỰC CUỘN NỘI DUNG */
+.scrollable-content { flex: 1; padding: 30px 40px !important; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
+
+/* TỔNG QUAN & KPI CARDS */
+.overview-section { background: white; border-radius: 16px; padding: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); flex-shrink: 0; }
+.overview-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.overview-header h2 { font-size: 18px !important; font-weight: 700 !important; color: var(--dark-blue) !important; margin-bottom: 2px; }
+.overview-header p { font-size: 13px !important; color: #737791 !important; margin: 0; }
+.btn-export { padding: 8px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; color: var(--dark-blue); border: 1px solid #E2E8F0; background: white; cursor: pointer; display: flex; align-items: center; gap: 6px; text-decoration: none; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.kpi-card { padding: 15px 18px !important; border-radius: 16px !important; min-height: 130px; display: flex; flex-direction: column; justify-content: center; }
+.kpi-icon-wrap { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+.kpi-icon-wrap svg { width: 16px; height: 16px; }
+
+.kpi-val { font-size: 20px !important; font-weight: 700 !important; color: var(--dark-blue) !important; margin: 0 0 2px 0 !important; }
+.kpi-label { font-size: 13px !important; font-weight: 600 !important; color: #425166 !important; margin: 0; }
+.kpi-trend { font-size: 11px !important; font-weight: 600 !important; color: #4079ED !important; margin: 3px 0 0 0 !important; }
+
+.pink { background: #FFE2E5; } .yellow { background: #FFF4DE; } .green { background: #DCFCE7; } .purple { background: #F3E8FF; }
+
+/* CHARTS & CALENDAR GRID */
+.bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Chia đều 3 cột bằng nhau tuyệt đối */
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+}
+.chart-box { background: #FFF; border-radius: 16px; padding: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-shrink: 0;}
+.box-header h3 { font-size: 16px; color: var(--dark-blue); font-weight: 700; margin: 0; }
+.box-header span { color: #737791; font-size: 18px; font-weight: 900; line-height: 1; cursor: pointer; }
+
+.plotly-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+    overflow: hidden;
+}
+/* Lịch */
+.calendar-box { align-items: center; justify-content: center; }
+.calendar-nav { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 15px; flex-shrink: 0; }
+.calendar-nav h3 { font-size: 18px; color: var(--dark-blue); font-weight: 800; margin: 0; }
+.nav-arrows { display: flex; gap: 10px; color: #94A3B8; font-weight: 900; font-size: 14px; cursor: pointer; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; width: 100%; text-align: center; color: #737791; font-size: 13px; font-weight: 700; flex: 1; align-items: center; }
+.cal-head { color: var(--dark-blue); font-weight: 800; }
+.cal-faded { opacity: 0.3; }
+.cal-active { background: var(--primary); color: white; border-radius: 6px; padding: 2px; box-shadow: 0 2px 5px rgba(93,95,239,0.4); }
+
+/* FOOTER DƯỚI CÙNG */
+.footer-fixed { height: 60px; border-top: 1px solid #F1F1F1; padding: 0 40px; display: flex; justify-content: flex-end; align-items: center; flex-shrink: 0; background: #FAFBFC; }
+.btn-back { display: flex; align-items: center; gap: 8px; border: none; background: transparent; color: #737791; font-weight: 600; cursor: pointer; text-decoration: none; font-size: 14px; }
+/* =========================================
+   HIỆU ỨNG NHÚN (BOUNCE IN UP) CHO TOÀN HỆ THỐNG
+========================================= */
+@keyframes bounceInUp {
+    0% { opacity: 0; transform: translateY(40px); }
+    60% { opacity: 1; transform: translateY(-10px); }
+    80% { transform: translateY(5px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 1. Áp dụng cho mọi khung nội dung trên toàn hệ thống */
+.kpi-card, .chart-card, .chart-container, .table-container,
+.report-card, .upload-card, .box-card, .bottom-row-chart,
+.summary-card, .table-box, .chart-box {
+    animation: bounceInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    opacity: 0;
+}
+
+.kpi-grid .kpi-card:nth-child(1), .reports-grid .report-card:nth-child(1) { animation-delay: 0.1s; }
+.kpi-grid .kpi-card:nth-child(2), .reports-grid .report-card:nth-child(2) { animation-delay: 0.2s; }
+.kpi-grid .kpi-card:nth-child(3), .reports-grid .report-card:nth-child(3) { animation-delay: 0.3s; }
+.kpi-grid .kpi-card:nth-child(4), .reports-grid .report-card:nth-child(4) { animation-delay: 0.4s; }
+
+.top-grid .summary-card { animation-delay: 0.1s; }
+
+/* 3. Hiệu ứng xuất hiện cho các khung lớn ở dưới (Table, Chart đơn) */
+.chart-container, .table-container, .box-card, .bottom-row-chart, .upload-card, .table-box {
+    animation-delay: 0.4s;
+}
+
+/* 4. Hiệu ứng xuất hiện lần lượt cho các lưới chứa nhiều Chart (như Sales, CEO, Acc) */
+.sales-grid .chart-card:nth-child(1), .chart-calendar-grid .chart-box:nth-child(1), .bottom-grid .chart-box:nth-child(1) { animation-delay: 0.3s; }
+.sales-grid .chart-card:nth-child(2), .chart-calendar-grid .chart-box:nth-child(2), .bottom-grid .chart-box:nth-child(2) { animation-delay: 0.4s; }
+.sales-grid .chart-card:nth-child(3), .chart-calendar-grid .chart-box:nth-child(3), .bottom-grid .chart-box:nth-child(3) { animation-delay: 0.5s; }
+.sales-grid .chart-card:nth-child(4), .chart-calendar-grid .chart-box:nth-child(4) { animation-delay: 0.6s; }
+.forecast-box { animation-delay: 0.7s; }

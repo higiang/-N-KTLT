@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lemonade - CEO Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ceo/ceo_dashboard.css') }}" />
+</head>
+<body>
+    <div class="ceo-app-container">
+        <aside class="menu-sidebar">
+            <div class="logo-top">
+                <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="sidebar-lemon">
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="brand-name-img">
+            </div>
+
+            <nav class="sidemenu">
+                <div class="nav-item active" onclick="location.href='/ceo/dashboard'">
+                    <img src="{{ url_for('static', filename='img/ic_dashboard.svg') }}"><span>Dashboard</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/reports'">
+                    <img src="{{ url_for('static', filename='img/ic_reports.svg') }}"><span>Reports</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/inv/dashboard'">
+                    <img src="{{ url_for('static', filename='img/ic_inventory.svg') }}"><span>Inventory</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/sales'">
+                    <img src="{{ url_for('static', filename='img/ic_sales_report.svg') }}"><span>Sales Report</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/mkt/dashboard'">
+                    <img src="{{ url_for('static', filename='img/ic_marketing.svg') }}"><span>Marketing</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/acc/dashboard'">
+                    <img src="{{ url_for('static', filename='img/ic_accounting&finance.svg') }}"><span>Finance</span>
+                </div>
+                <div class="nav-item" onclick="location.href='/settings'">
+                    <img src="{{ url_for('static', filename='img/ic_settings.svg') }}"><span>Settings</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="nav-item-logout" onclick="location.href='/signout'">
+                    <img src="{{ url_for('static', filename='img/ic_sign_out.svg') }}"><span>Sign Out</span>
+                </div>
+                <img src="{{ url_for('static', filename='img/lemonade_logo.png') }}" class="lemonade-logo-bottom">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header-fixed">
+                <h1 class="header-title">Chief Executive Officer</h1>
+                <div class="header-right">
+                    <div class="search-box">
+                        <img src="{{ url_for('static', filename='img/ic_search.svg') }}" width="16">
+                        <input type="text" placeholder="Search here...">
+                    </div>
+                    <div class="profile-right">
+                        <span class="email-bold">email: ceo@gmail.com</span>
+                        <img src="{{ url_for('static', filename='img/img_lemonade.png') }}" class="user-logo">
+                    </div>
+                </div>
+            </header>
+
+            <div class="scrollable-content">
+                <section class="overview-section">
+                    <div class="overview-header">
+                        <div>
+                            <h2>Today's Sales</h2>
+                            <p>Sales Summary</p>
+                        </div>
+                        <button class="btn-export" onclick="exportFile('/acc/export-dashboard')">
+                            <img src="{{ url_for('static', filename='img/ic_export.svg') }}"> Export
+                        </button>
+                    </div>
+
+                    <div class="kpi-grid">
+                        <div class="kpi-card pink">
+                            <div class="kpi-icon"><img src="{{ url_for('static', filename='img/ic_dashboard_pink.svg') }}"></div>
+                            <div class="kpi-val">{{ kpi['Profit']['val'] if kpi and 'Profit' in kpi else '—' }}</div>
+                            <div class="kpi-label">Profit</div>
+                            <div class="kpi-trend">{{ kpi['Profit']['status'] if kpi and 'Profit' in kpi else '' }} from last month</div>
+                        </div>
+                        <div class="kpi-card orange">
+                            <div class="kpi-icon"><img src="{{ url_for('static', filename='img/ic_dashboard_orange.svg') }}"></div>
+                            <div class="kpi-val">{{ kpi['Total Cost']['val'] if kpi and 'Total Cost' in kpi else '0M' }}</div>
+                            <div class="kpi-label">Total Cost</div>
+                            <div class="kpi-trend">Updated from Database</div>
+                        </div>
+                        <div class="kpi-card green">
+                            <div class="kpi-icon"><img src="{{ url_for('static', filename='img/ic_dashboard_green.svg') }}"></div>
+                            <div class="kpi-val">{{ kpi['Product Sold']['val'] if kpi and 'Product Sold' in kpi else '—' }}</div>
+                            <div class="kpi-label">Product Sold</div>
+                            <div class="kpi-trend">{{ kpi['Product Sold']['status'] if kpi and 'Product Sold' in kpi else '' }} from last month</div>
+                        </div>
+                        <div class="kpi-card purple">
+                            <div class="kpi-icon"><img src="{{ url_for('static', filename='img/ic_dashboard_purple.svg') }}"></div>
+                            <div class="kpi-val">{{ kpi['Total Revenue']['val'] if kpi and 'Total Revenue' in kpi else '—' }}</div>
+                            <div class="kpi-label">Total Revenue</div>
+                            <div class="kpi-trend">{{ kpi['Total Revenue']['status'] if kpi and 'Total Revenue' in kpi else '' }} from last month</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="chart-calendar-grid">
+                    <div class="chart-box">
+                        <h3>Total Revenue</h3>
+                        <div class="plotly-wrap">{{ pie_rev|safe }}</div>
+                    </div>
+
+                    <div class="chart-box">
+                        <div class="cal-header">
+                            <h3 id="cal-title"></h3>
+                            <div class="cal-nav">
+                                <span onclick="changeMonth(-1)">&#8249;</span>
+                                <span onclick="changeMonth(1)">&#8250;</span>
+                            </div>
+                        </div>
+                        <div id="calendar" class="cal-body"></div>
+                    </div>
+
+                    <div class="chart-box">
+                        <h3>Total Cost</h3>
+                        <div class="plotly-wrap">{{ pie_cost|safe }}</div>
+                    </div>
+
+                    <div class="chart-box forecast-box">
+                        <div class="fc-info">
+                            <h3>AI Revenue Forecast</h3>
+                            <p>Dự báo doanh thu tháng tiếp theo dựa trên xu hướng lịch sử</p>
+                        </div>
+                        <div class="fc-data">
+                            <div id="forecast-val" class="fc-main">--</div>
+                            <div id="forecast-month" class="fc-sub"></div>
+                        </div>
+                        <div class="fc-data">
+                            <div class="fc-sub" style="margin-bottom:4px;">Độ tin cậy (R²)</div>
+                            <div id="forecast-r2" class="fc-r2">--</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+<script>
+    fetch('/api/forecast').then(r => r.json()).then(d => {
+        document.getElementById('forecast-val').textContent = d.forecast;
+        document.getElementById('forecast-month').textContent = d.month;
+        document.getElementById('forecast-r2').textContent = d.r2;
+    });
+
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    let calDate = new Date();
+    function renderCalendar(d) {
+        const y = d.getFullYear(), m = d.getMonth();
+        document.getElementById('cal-title').textContent = MONTHS[m] + ' ' + y;
+        const firstDay = new Date(y, m, 1).getDay();
+        const totalDays = new Date(y, m+1, 0).getDate();
+        const prevDays = new Date(y, m, 0).getDate();
+        const today = new Date();
+        let html = '<table class="cal-table"><tr>' + ['S','M','T','W','T','F','S'].map(x => `<th>${x}</th>`).join('') + '</tr><tr>';
+        for(let i=0;i<firstDay;i++) html += `<td class="faded">${prevDays-firstDay+i+1}</td>`;
+        for(let day=1;day<=totalDays;day++){
+            if((firstDay+day-1)%7===0 && day!==1) html += '</tr><tr>';
+            const isToday = day===today.getDate() && m===today.getMonth() && y===today.getFullYear();
+            html += `<td>${isToday ? `<span class="active">${day}</span>` : `<span>${day}</span>`}</td>`;
+        }
+        const filled = (firstDay+totalDays)%7;
+        if(filled>0) for(let i=1;i<=7-filled;i++) html += `<td class="faded">${i}</td>`;
+        html += '</tr></table>';
+        document.getElementById('calendar').innerHTML = html;
+    }
+    function changeMonth(dir){ calDate.setMonth(calDate.getMonth()+dir); renderCalendar(calDate); }
+    renderCalendar(calDate);
+
+    async function exportFile(url) {
+        const res = await fetch(url);
+        const data = await res.json();
+        alert(data.message);
+    }
+</script>
+</body>
+</html>

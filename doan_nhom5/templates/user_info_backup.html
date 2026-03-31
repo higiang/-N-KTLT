@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Info | Lemonade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='user_info.css') }}" />
+</head>
+<body>
+    <div class="user-info-screen">
+        <div class="lemonade-container">
+            <div class="welcome-text">Welcome to</div>
+            <div class="logo-wrapper">
+                <img class="logo-img" src="{{ url_for('static', filename='image/img_lemonade.png') }}" alt="Logo">
+                <span class="logo-text">LEMONADE</span>
+            </div>
+        </div>
+
+        <div class="user-info-panel">
+            <div class="user-icon-wrapper">
+                <img src="{{ url_for('static', filename='image/user.svg') }}" alt="User Icon">
+            </div>
+
+            <div class="instruction">
+                <span style="border: 1px solid #000; border-radius: 50%; width: 16px; height: 16px; display: inline-flex; justify-content: center; align-items: center; font-size: 11px;">i</span>
+                Please check and fill in your information carefully
+            </div>
+        <form method="POST" action="">
+
+            <div class="input-group">
+                <label>Department</label>
+                <input type="text" name="department" value="{{ user['department'] if user['department'] else '' }}">
+            </div>
+
+            <div class="input-group">
+                <label>Department's Manager</label>
+                <input type="text" name="manager" value="{{ user['manager'] if user['manager'] else '' }}">
+            </div>
+
+            <div class="input-group">
+                <label>Phone</label>
+                <input type="text" name="phone" value="{{ user['phone'] if user['phone'] else '' }}">
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email" value="{{ user['email'] }}" readonly style="background-color: #f0f0f0;">
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" value="{{ user['password'] }}" readonly style="background-color: #f0f0f0;">
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn-confirm">Confirm</button>
+
+                <a href="{{ url_for('logout') }}" class="btn-logout" style="text-decoration: none; text-align: center; display: inline-block;">Log out</a>
+            </div>
+
+        </form>
+        </div>
+    </div>
+</body>
+</html>
